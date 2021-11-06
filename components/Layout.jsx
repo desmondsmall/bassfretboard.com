@@ -10,7 +10,7 @@ export const Layout = ({ children }) => {
 
                 <link rel="shortcut icon" href="/favicon.ico" />
 
-                <title>daBASS</title>
+                <title>Bass Trainer</title>
                 <meta name="description" content="wee" />
             </Head>
 

@@ -8,7 +8,7 @@ export const CircleOfFifthsOptions = ({ setNoteToPlay }) => {
 
     return (
         <>
-            Circle of Fifths Options
+            CIRCLE OF FIFTHS OPTIONS
         </>
     )
 }

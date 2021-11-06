@@ -5,6 +5,6 @@ export const Stop = ({ setListening }) => {
     }
 
     return (
-        <button onClick={stop}> stop</button >
+        <button onClick={stop} className="">stop</button>
     )
 }

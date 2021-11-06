@@ -2,29 +2,36 @@ import React, { useState, useEffect } from 'react'
 import { Analyser } from '../components/Analyser'
 import { Options } from '../components/Options'
 
-export const Display = ({ userAudio, listening }) => {
+export const Display = ({ userAudio, listening, optionsIsOpen, setOptionsIsOpen }) => {
 
     const [noteToPlay, setNoteToPlay] = useState()
     const [practiceMode, setPracticeMode] = useState('fretboard')
-
     console.log("display rendered")
 
     return (
         <>
-            <Options
-                setNoteToPlay={setNoteToPlay}
-                practiceMode={practiceMode}
-                setPracticeMode={setPracticeMode}
-            />
+            <div className="border-2 border-red-400">
 
+                <div className="border-b-2 border-black my-4 pb-4">
+                    welcome to bass trainer<br />
+                    play area
+                </div>
 
-            <Analyser
-                userAudio={userAudio}
-                listening={listening}
-                noteToPlay={noteToPlay}
-            />
+                <Options
+                    setNoteToPlay={setNoteToPlay}
+                    practiceMode={practiceMode}
+                    setPracticeMode={setPracticeMode}
+                    optionsIsOpen={optionsIsOpen}
+                />
 
-            <div className="absolute bottom-0 left-0 m-2"><h1>Practice Mode: <span className="font-bold capitalize">{practiceMode}</span></h1></div>
+                {(listening && userAudio) &&
+                    <Analyser
+                        userAudio={userAudio}
+                        listening={listening}
+                        noteToPlay={noteToPlay}
+                    />
+                }
+            </div>
         </>
     )
 }

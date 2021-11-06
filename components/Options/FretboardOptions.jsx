@@ -29,8 +29,7 @@ export const FretboardOptions = ({ setNoteToPlay }) => {
 
     return (
         <>
-            Here are some fretboard options.
-            State is kept in Fretboard Options Component.
+            FRETBOARD OPTIONS
         </>
     )
 }

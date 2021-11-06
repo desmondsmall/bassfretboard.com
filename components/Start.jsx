@@ -19,6 +19,6 @@ export const Start = ({ userAudio, setUserAudio, setListening }) => {
     }
 
     return (
-        <button onClick={click}>start</button>
+        <button onClick={click} className="">start</button>
     )
 }
