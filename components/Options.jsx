@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { CircleOfFifthsOptions } from './Options/CircleOfFifthsOptions'
 import { FretboardOptions } from './Options/FretboardOptions'
 import { useWindowSize } from '../lib/hooks/useWindowSize'
+import { useBreakpointContext } from "../lib/context/BreakpointContext"
 
 export const Options = ({ setNoteToPlay, setPracticeMode, practiceMode, optionsIsOpen, start }) => {
 
     const windowSize = useWindowSize()
+    const breakpoints = useBreakpointContext()
 
     const renderOptions = () => {
         switch (practiceMode) {
@@ -41,10 +43,10 @@ export const Options = ({ setNoteToPlay, setPracticeMode, practiceMode, optionsI
 
             {renderDescription()}
 
-            {(optionsIsOpen || windowSize.width >= 768) &&
+            {(optionsIsOpen || windowSize.width >= breakpoints.md) &&
                 <div className={
                     /* global */ `bg-blue-100 
-                    ${windowSize.width < 768
+                    ${windowSize.width < breakpoints.md
                     /* mobile */ ? 'absolute inset-x-0 inset-y-0 z-10'
                     /* dsktop */ : ''}`}
                 >

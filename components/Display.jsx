@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Analyser } from '../components/Analyser'
 import { Options } from '../components/Options'
 import { Stop } from '../components/Stop'
 import { Start } from "../components/Start"
 import { MobileControls } from './MobileControls'
 
-export const Display = ({ userAudio, setUserAudio, listening, setListening, breakpoints }) => {
+export const Display = ({ userAudio, setUserAudio, listening, setListening }) => {
 
     const [practiceMode, setPracticeMode] = useState('fretboard')
     const [noteToPlay, setNoteToPlay] = useState()
@@ -44,7 +44,7 @@ export const Display = ({ userAudio, setUserAudio, listening, setListening, brea
                         start={start}
                     />
 
-                    <MobileControls start={start} setOptionsIsOpen={setOptionsIsOpen} optionsIsOpen={optionsIsOpen} breakpoints={breakpoints} />
+                    <MobileControls start={start} setOptionsIsOpen={setOptionsIsOpen} optionsIsOpen={optionsIsOpen} />
                 </>
             }
         </>

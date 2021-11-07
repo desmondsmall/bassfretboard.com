@@ -6,7 +6,6 @@ export default function Home() {
 
   const [userAudio, setUserAudio] = useState()
   const [listening, setListening] = useState()
-  const [breakpoints] = useState({ md: 768 })
 
   console.log("home rendered")
 
@@ -27,7 +26,6 @@ export default function Home() {
         setUserAudio={setUserAudio}
         listening={listening}
         setListening={setListening}
-        breakpoints={breakpoints}
       />
 
     </>
