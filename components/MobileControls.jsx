@@ -1,6 +1,6 @@
 import { ToggleOptions } from "./ToggleOptions"
-import { useWindowSize } from '../lib/hooks/useWindowSize'
-import { useBreakpointContext } from "../lib/context/BreakpointContext"
+import { useWindowSize } from '../src/hooks/useWindowSize'
+import { useBreakpointContext } from "../src/context/BreakpointContext"
 
 export const MobileControls = ({ start, optionsIsOpen, setOptionsIsOpen }) => {
 

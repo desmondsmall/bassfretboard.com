@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Pitchfinder from 'pitchfinder'
-import { pitchToNote } from '../lib/helpers'
-import useInterval from '../lib/hooks/useInterval'
+import { pitchToNote } from '../src/helpers'
+import useInterval from '../src/hooks/useInterval'
 
 export const Analyser = ({ userAudio, listening, noteToPlay }) => {
 

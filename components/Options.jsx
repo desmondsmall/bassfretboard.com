@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { CircleOfFifthsOptions } from './Options/CircleOfFifthsOptions'
 import { FretboardOptions } from './Options/FretboardOptions'
-import { useWindowSize } from '../lib/hooks/useWindowSize'
-import { useBreakpointContext } from "../lib/context/BreakpointContext"
+import { useWindowSize } from '../src/hooks/useWindowSize'
+import { useBreakpointContext } from "../src/context/BreakpointContext"
 
 export const Options = ({ setNoteToPlay, setPracticeMode, practiceMode, optionsIsOpen, start }) => {
 
