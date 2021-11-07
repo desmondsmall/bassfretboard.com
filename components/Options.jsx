@@ -3,7 +3,7 @@ import { CircleOfFifthsOptions } from './Options/CircleOfFifthsOptions'
 import { FretboardOptions } from './Options/FretboardOptions'
 import { useWindowSize } from '../lib/hooks/useWindowSize'
 
-export const Options = ({ setNoteToPlay, setPracticeMode, practiceMode, optionsIsOpen }) => {
+export const Options = ({ setNoteToPlay, setPracticeMode, practiceMode, optionsIsOpen, start }) => {
 
     const windowSize = useWindowSize()
 
@@ -27,23 +27,26 @@ export const Options = ({ setNoteToPlay, setPracticeMode, practiceMode, optionsI
 
     return (
         <>
-            <fieldset>
-                <legend>Select Practice Mode</legend>
+            <div className="flex items-center">
+                <label htmlFor="practice-mode" className="mr-2">Practice Mode:</label>
                 <select
+                    id="practice-mode"
                     onChange={(e) => setPracticeMode(e.target.value)}
                     value={practiceMode}
-                    className="border py-2 rounded-lg shadow-inner text-sm mr-2 w-full">
+                    className="border py-2 rounded-lg shadow-inner text-sm mr-2">
                     <option value="fretboard">Fretboard</option>
                     <option value="circle of fifths">Circle of Fifths</option>
                 </select>
-            </fieldset>
+            </div>
 
             {renderDescription()}
 
             {(optionsIsOpen || windowSize.width >= 768) &&
-                <div className={`${windowSize.width < 768
-                    ? 'absolute inset-x-0 inset-y-0 bg-blue-100'
-                    : 'bg-blue-200'}`}
+                <div className={
+                    /* global */ `bg-blue-100 
+                    ${windowSize.width < 768
+                    /* mobile */ ? 'absolute inset-x-0 inset-y-0 z-10'
+                    /* dsktop */ : ''}`}
                 >
                     {renderOptions()}
                 </div>

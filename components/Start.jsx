@@ -1,4 +1,4 @@
-export const Start = ({ userAudio, setUserAudio, setListening }) => {
+export const Start = ({ userAudio, setUserAudio, setListening, optionsIsOpen }) => {
 
     const click = async () => {
         if (!userAudio) {
@@ -19,6 +19,10 @@ export const Start = ({ userAudio, setUserAudio, setListening }) => {
     }
 
     return (
-        <button onClick={click} className="">start</button>
+        <>
+            {!optionsIsOpen &&
+                <button onClick={click} className="w-1/2">start</button>
+            }
+        </>
     )
 }

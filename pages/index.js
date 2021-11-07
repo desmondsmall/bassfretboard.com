@@ -1,33 +1,35 @@
-import React, { useState, useEffect } from 'react'
-import { Layout } from '../components/Layout'
+import React, { useState } from 'react'
+import Head from 'next/head'
 import { Display } from '../components/Display'
-import { Start } from "../components/Start"
-import { Stop } from "../components/Stop"
-import { OptionsToggle } from "../components/OptionsToggle"
+
 export default function Home() {
 
   const [userAudio, setUserAudio] = useState()
   const [listening, setListening] = useState()
-  const [optionsIsOpen, setOptionsIsOpen] = useState()
+  const [breakpoints] = useState({ md: 768 })
+
+  console.log("home rendered")
 
   return (
-    <Layout>
+    <>
+      <Head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <link rel="shortcut icon" href="/favicon.ico" />
+
+        <title>Bass Trainer</title>
+        <meta name="description" content="wee" />
+      </Head>
 
       <Display
         userAudio={userAudio}
+        setUserAudio={setUserAudio}
         listening={listening}
-        optionsIsOpen={optionsIsOpen}
-        setOptionsIsOpen={setOptionsIsOpen}
+        setListening={setListening}
+        breakpoints={breakpoints}
       />
 
-      {listening &&
-        <Stop setListening={setListening} />
-      }
-      <div className="flex mt-2">
-        <Start userAudio={userAudio} setUserAudio={setUserAudio} setListening={setListening} />
-        <OptionsToggle setOptionsIsOpen={setOptionsIsOpen} optionsIsOpen={optionsIsOpen} />
-      </div>
-
-    </Layout>
+    </>
   )
 }
