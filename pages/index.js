@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import { Display } from '../components/Display'
+import { Display } from '../src/components/Display'
 
 export default function Home() {
 
