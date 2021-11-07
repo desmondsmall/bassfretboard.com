@@ -1,12 +1,12 @@
 import 'tailwindcss/tailwind.css'
 import '../styles/main.css'
-import { BreakpointWrapper } from '../lib/context/BreakpointContext'
+import { BreakpointProvider } from '../lib/context/BreakpointContext'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <BreakpointWrapper>
+    <BreakpointProvider>
       <Component {...pageProps} />
-    </BreakpointWrapper >
+    </BreakpointProvider >
   )
 }
 
