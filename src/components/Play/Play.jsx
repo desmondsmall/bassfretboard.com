@@ -1,7 +1,10 @@
-export const Play = ({ playMode }) => {
+export const Play = ({ noteToPlay, playMode, stop }) => {
+    console.log(noteToPlay)
     return (
         <>
-            "HI"
+            {noteToPlay.string}
+            {noteToPlay.note}
+            {stop}
         </>
     )
 }

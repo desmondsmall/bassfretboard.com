@@ -31,3 +31,9 @@ export default function Home() {
     </>
   )
 }
+
+// you must setNoteToPlay in play section
+// you need to lift mode options (frets, etc) to Display or reorganize
+
+// maybe display can render each mode, and each mode renders its own options and play components, rather than
+// having an "options" component render each mode and a "play" component render each mode

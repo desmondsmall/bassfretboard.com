@@ -1,7 +1,29 @@
-const fretboardNote = (strings, frets) => {
+import { notes } from './notes'
+
+export const getFretboardNote = (strings, frets, accidentals) => {
+
+    // Collect the selected strings into an array
+    const selectedStrings = []
+    strings.map((string) => {
+        if (string.selected) {
+            selectedStrings.push(string.name)
+        }
+    })
+console.log(selectedStrings)
+    // If no strings are selected add the big four
+    if (selectedStrings.length === 0) {
+        selectedStrings.push('E', 'A', 'D', 'G')
+    }
+
+    // These are numeric values that correspond to the indexes on the notes array
+    const string = selectedStrings[Math.floor(Math.random() * selectedStrings.length)]
+    const fret = randomIntFromInterval(frets.min, frets.max)
+    const note = notes[string][fret]
+
+    return { 'string': string, 'note': note }
 }
 
-const pitchToNote = (freq) => {
+export const pitchToNote = (freq) => {
 
     if (freq === null) {
         return null
@@ -20,4 +42,10 @@ const pitchToNote = (freq) => {
 
 }
 
-export { pitchToNote }
+export const randomIntFromInterval = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+export const randomBoolean = () => {
+    return Math.random() < 0.5
+}

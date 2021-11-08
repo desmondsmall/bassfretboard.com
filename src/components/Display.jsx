@@ -20,7 +20,6 @@ export const Display = ({ userAudio, setUserAudio, listening, setListening }) =>
     return (
         <>
 
-            {/* Default View. Start hasn't been pressed. */}
             {!listening &&
                 <>
                     <div className="border-b-2 border-black my-4 pb-4">
@@ -28,6 +27,7 @@ export const Display = ({ userAudio, setUserAudio, listening, setListening }) =>
                     </div>
 
                     <Options
+                        listening={listening}
                         setNoteToPlay={setNoteToPlay}
                         playMode={playMode}
                         setPlayMode={setPlayMode}
@@ -42,16 +42,14 @@ export const Display = ({ userAudio, setUserAudio, listening, setListening }) =>
                 </>
             }
 
-            {/* Started. Show note to play. Show play area by mode. */}
             {listening &&
                 <>
-                    <Play />
+                    <Play noteToPlay={noteToPlay} playMode={playMode} stop={stop}/>
                     <Analyser
                         userAudio={userAudio}
                         listening={listening}
                         noteToPlay={noteToPlay}
                     />
-                    {stop}
                 </>
             }
 

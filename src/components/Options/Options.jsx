@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { CircleOfFifthsOptions } from './CircleOfFifthsOptions'
-import { FretboardOptions } from './FretboardOptions'
+import { CircleOfFifthsOptions } from './CircleOfFifths/CircleOfFifthsOptions'
+import { FretboardOptions } from './Fretboard/FretboardOptions'
 import { useWindowSize } from '../../hooks/useWindowSize'
 import { useBreakpointContext } from "../../context/BreakpointContext"
 
-export const Options = ({ setNoteToPlay, setPlayMode, playMode, optionsIsOpen, start }) => {
+export const Options = ({ setNoteToPlay, setPlayMode, playMode, optionsIsOpen, start, listening }) => {
 
     const windowSize = useWindowSize()
     const breakpoints = useBreakpointContext()
@@ -12,7 +12,7 @@ export const Options = ({ setNoteToPlay, setPlayMode, playMode, optionsIsOpen, s
     const renderOptions = () => {
         switch (playMode) {
             case 'fretboard':
-                return <FretboardOptions setNoteToPlay={setNoteToPlay} />
+                return <FretboardOptions setNoteToPlay={setNoteToPlay} listening={listening} />
             case 'circle of fifths':
                 return <CircleOfFifthsOptions setNoteToPlay={setNoteToPlay} />
         }
@@ -26,7 +26,7 @@ export const Options = ({ setNoteToPlay, setPlayMode, playMode, optionsIsOpen, s
                 return 'Play around the circle of fifths.'
         }
     }
-    
+
     return (
         <>
             <div className="flex items-center">
@@ -41,9 +41,7 @@ export const Options = ({ setNoteToPlay, setPlayMode, playMode, optionsIsOpen, s
                 </select>
             </div>
             {(windowSize.width >= breakpoints.md) &&
-                <>
-                    {start}
-                </>
+                <> {start} </>
             }
             {renderDescription()}
 
