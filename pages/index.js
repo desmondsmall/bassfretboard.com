@@ -20,7 +20,7 @@ export default function Home() {
         <title>Bass Trainer</title>
         <meta name="description" content="wee" />
       </Head>
-
+      
       <Display
         userAudio={userAudio}
         setUserAudio={setUserAudio}
