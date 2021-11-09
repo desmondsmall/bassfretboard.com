@@ -16,7 +16,7 @@ export const Accidentals = ({ accidentals, setAccidentals }) => {
                     name={accidental[0]}
                     onClick={() => handleClick(accidental[0], accidental[1])}
                     className={` ${accidental[1] ? 'active' : ''}`}>
-                    {accidental[0] == "sharps" ? sharpSymbol : flatSymbol}
+                    {accidental[0] == "sharp" ? sharpSymbol : flatSymbol}
                 </button>
             )}
         </>

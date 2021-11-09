@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import { Fretboard } from '../src/components/Fretboard/Fretboard'
 import { Welcome } from '../src/components/Welcome'
-import { Stop } from '../src/components/Stop'
 import { Start } from '../src/components/Start'
 
 export default function Home() {
@@ -13,7 +12,6 @@ export default function Home() {
   const [optionsIsOpen, setOptionsIsOpen] = useState()
 
   const start = <Start userAudio={userAudio} setUserAudio={setUserAudio} setListening={setListening} />
-  const stop = <Stop setListening={setListening} setOptionsIsOpen={setOptionsIsOpen} />
 
   console.log("home rendered")
 
@@ -29,23 +27,26 @@ export default function Home() {
         <meta name="description" content="wee" />
       </Head>
 
-      <Welcome
-        listening={listening}
-        playMode={playMode}
-        start={start}
-        stop={stop}
-        setOptionsIsOpen={setOptionsIsOpen}
-      />
+      {!listening &&
+        <Welcome
+          listening={listening}
+          playMode={playMode}
+          setPlayMode={setPlayMode}
+          start={start}
+          optionsIsOpen={optionsIsOpen}
+          setOptionsIsOpen={setOptionsIsOpen}
+        />
+      }
 
-      <Fretboard
-        start={start}
-        stop={stop}
-        listening={listening}
-        setListening={setListening}
-        userAudio={userAudio}
-        optionsIsOpen={optionsIsOpen}
-        setOptionsIsOpen={setOptionsIsOpen}
-      />
+      {playMode === 'fretboard' &&
+        <Fretboard
+          userAudio={userAudio}
+          listening={listening}
+          setListening={setListening}
+          optionsIsOpen={optionsIsOpen}
+          start={start}
+        />
+      }
 
     </>
   )

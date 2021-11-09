@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Pitchfinder from 'pitchfinder'
-import { pitchToNote } from '../helpers'
+import { pitchToNote } from '../functions'
 import useInterval from '../hooks/useInterval'
 
 export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay }) => {
@@ -38,7 +38,7 @@ export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay }) => {
     return (
         <>
             {notePlaying &&
-                <h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">{notePlaying.sharpNote}</h1>
+                <h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">{notePlaying.sharp}</h1>
             }
             {!notePlaying &&
                 < h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">...</h1>

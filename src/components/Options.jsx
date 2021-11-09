@@ -8,19 +8,15 @@ export const Options = ({ children, optionsIsOpen }) => {
 
     return (
         <>
-            {(optionsIsOpen || windowSize.width >= breakpoints.md) &&
-                <>
-                    <div className={
-                /* global */ `bg-blue-100 
-                ${windowSize.width < breakpoints.md
-                /* mobile */ ? 'absolute inset-x-0 inset-y-0 z-10 bg-green-100'
-                /* dsktop */ : ''}`}
-                    >
-                        "OPTIONS"
-
-                        {children}
-                    </div>
-                </>
+            {(optionsIsOpen && windowSize.width < breakpoints.md) &&
+                <div className="absolute inset-x-0 inset-y-0 z-10 bg-blue-100">
+                    {children}
+                </div>
+            }
+            {(windowSize.width >= breakpoints.md) &&
+                <div className="bg-blue-100">
+                    {children}
+                </div>
             }
         </>
     )
