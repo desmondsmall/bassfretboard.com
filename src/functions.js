@@ -52,6 +52,8 @@ export const getFretboardNote = (strings, frets, accidentals) => {
         return { 'string': string, 'note': note.substring(0, 1) + note.substring(2, 3) }
     }
 
+    return { 'string': string, 'note': note }
+
 
 }
 

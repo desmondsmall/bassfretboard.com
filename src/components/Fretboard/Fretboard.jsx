@@ -85,6 +85,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
                 <>
                     play {noteToPlay.note} on {noteToPlay.string}
                     <button onClick={()=>setListening()}>stop</button>
+                    <button onClick={() => setNoteToPlay(getFretboardNote(strings, frets, accidentals))}>Skip</button>
                     <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} />
                 </>
             }
