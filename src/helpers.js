@@ -9,7 +9,7 @@ export const getFretboardNote = (strings, frets, accidentals) => {
             selectedStrings.push(string.name)
         }
     })
-console.log(selectedStrings)
+
     // If no strings are selected add the big four
     if (selectedStrings.length === 0) {
         selectedStrings.push('E', 'A', 'D', 'G')
@@ -38,7 +38,13 @@ export const pitchToNote = (freq) => {
     const flat = flats[Math.floor(halfStepsBelowMiddleC % 12)]
     const sharp = sharps[Math.floor(halfStepsBelowMiddleC % 12)]
 
-    return { sharp: sharp, flat: flat, octave: octave }
+    return { 
+        sharp: sharp, 
+        flat: flat, 
+        octave: octave,
+        sharpNote: sharp+octave,
+        flatNote: flat+octave
+     }
 
 }
 

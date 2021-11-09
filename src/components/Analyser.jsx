@@ -3,7 +3,7 @@ import Pitchfinder from 'pitchfinder'
 import { pitchToNote } from '../helpers'
 import useInterval from '../hooks/useInterval'
 
-export const Analyser = ({ userAudio, listening, noteToPlay }) => {
+export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay }) => {
 
     const [notePlaying, setNotePlaying] = useState()
     const [context] = useState(new (window.AudioContext || window.webkitAudioContext)())
@@ -24,6 +24,9 @@ export const Analyser = ({ userAudio, listening, noteToPlay }) => {
         analyser.getFloatTimeDomainData(array32)
 
         setNotePlaying(pitchToNote(detectPitch(array32)))
+        if (notePlaying) {
+            isCorrect(noteToPlay, notePlaying)
+        }
     }, listening === true ? 600 : null)
 
     useEffect(() => {
@@ -32,16 +35,10 @@ export const Analyser = ({ userAudio, listening, noteToPlay }) => {
         }
     })
 
-    useEffect(() => {
-        if (!listening) {
-            setNotePlaying()
-        }
-    }, [listening])
-
     return (
         <>
             {notePlaying &&
-                <h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">{notePlaying.sharp}{notePlaying.octave}</h1>
+                <h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">{notePlaying.sharpNote}</h1>
             }
             {!notePlaying &&
                 < h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">...</h1>

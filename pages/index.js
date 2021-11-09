@@ -1,11 +1,19 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import { Display } from '../src/components/Display'
+import { Fretboard } from '../src/components/Fretboard/Fretboard'
+import { Welcome } from '../src/components/Welcome'
+import { Stop } from '../src/components/Stop'
+import { Start } from '../src/components/Start'
 
 export default function Home() {
 
   const [userAudio, setUserAudio] = useState()
   const [listening, setListening] = useState()
+  const [playMode, setPlayMode] = useState('fretboard')
+  const [optionsIsOpen, setOptionsIsOpen] = useState()
+
+  const start = <Start userAudio={userAudio} setUserAudio={setUserAudio} setListening={setListening} />
+  const stop = <Stop setListening={setListening} setOptionsIsOpen={setOptionsIsOpen} />
 
   console.log("home rendered")
 
@@ -20,20 +28,25 @@ export default function Home() {
         <title>Bass Trainer</title>
         <meta name="description" content="wee" />
       </Head>
-      
-      <Display
-        userAudio={userAudio}
-        setUserAudio={setUserAudio}
+
+      <Welcome
+        listening={listening}
+        playMode={playMode}
+        start={start}
+        stop={stop}
+        setOptionsIsOpen={setOptionsIsOpen}
+      />
+
+      <Fretboard
+        start={start}
+        stop={stop}
         listening={listening}
         setListening={setListening}
+        userAudio={userAudio}
+        optionsIsOpen={optionsIsOpen}
+        setOptionsIsOpen={setOptionsIsOpen}
       />
 
     </>
   )
 }
-
-// you must setNoteToPlay in play section
-// you need to lift mode options (frets, etc) to Display or reorganize
-
-// maybe display can render each mode, and each mode renders its own options and play components, rather than
-// having an "options" component render each mode and a "play" component render each mode

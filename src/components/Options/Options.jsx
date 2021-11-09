@@ -9,6 +9,32 @@ export const Options = ({ setNoteToPlay, setPlayMode, playMode, optionsIsOpen, s
     const windowSize = useWindowSize()
     const breakpoints = useBreakpointContext()
 
+    // Fretboard 
+    const [strings, setStrings] = useState([
+        {
+            name: 'B',
+            selected: false
+        },
+        {
+            name: 'E',
+            selected: true
+        },
+        {
+            name: 'A',
+            selected: false
+        },
+        {
+            name: 'D',
+            selected: false
+        },
+        {
+            name: 'G',
+            selected: false
+        }
+    ])
+    const [frets, setFrets] = useState({ min: 1, max: 7 })
+    const [accidentals, setAccidentals] = useState({ sharps: true, flats: false })
+
     const renderOptions = () => {
         switch (playMode) {
             case 'fretboard':
