@@ -9,7 +9,7 @@ export default function Home() {
 
   const [userAudio, setUserAudio] = useState()
   const [listening, setListening] = useState()
-  const [playMode, setPlayMode] = useState('fretboard')
+  const [playMode, setPlayMode] = useState('circle of fifths')
   const [optionsIsOpen, setOptionsIsOpen] = useState()
 
   const start = <Start userAudio={userAudio} setUserAudio={setUserAudio} setListening={setListening} />
@@ -48,7 +48,6 @@ export default function Home() {
 
       {!listening &&
         <Welcome
-          listening={listening}
           playMode={playMode}
           setPlayMode={setPlayMode}
           start={start}

@@ -16,6 +16,10 @@ export const transpose = (note) => {
     return note
 }
 
+export const getCircleOfFifthsNote = (direction, startingNote, diagram) => {
+    return "NOTE TO PLAY"
+}
+
 export const getFretboardNote = (strings, fretMinMax, accidentals) => {
 
     // Collect the selected strings
