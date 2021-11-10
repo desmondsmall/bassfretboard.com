@@ -12,8 +12,8 @@ export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay }) => {
 
     const detectPitch = Pitchfinder.AMDF({
         sampleRate: context.sampleRate,
-        minFrequency: 28,
-        maxFrequency: 600,
+        minFrequency: 31,
+        maxFrequency: 530,
         sensitivity: 0.05
     });
 
@@ -38,7 +38,9 @@ export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay }) => {
     return (
         <>
             {notePlaying &&
-                <h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">{notePlaying.note}</h1>
+                <h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">
+                    {notePlaying.note}
+                    </h1>
             }
             {!notePlaying &&
                 < h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">...</h1>

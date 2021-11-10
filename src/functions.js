@@ -18,7 +18,7 @@ export const transpose = (note) => {
 
 export const getFretboardNote = (strings, frets, accidentals) => {
 
-    // Collect the selected strings into an array
+    // Collect the selected strings
     const selectedStrings = []
     strings.map((string) => {
         if (string.selected) {
@@ -26,7 +26,7 @@ export const getFretboardNote = (strings, frets, accidentals) => {
         }
     })
 
-    // If no strings are selected do the generic four
+    // Default to EADG if none are selected
     if (selectedStrings.length === 0) {
         selectedStrings.push('E', 'A', 'D', 'G')
     }
@@ -40,26 +40,20 @@ export const getFretboardNote = (strings, frets, accidentals) => {
     if (accidentals.sharp && !accidentals.flat) {
         return { 'string': string, 'note': note }
     }
-    if (accidentals.flat && !accidentals.sharp) {
+    if (!accidentals.sharp && accidentals.flat) {
         return { 'string': string, 'note': transpose(note) }
     }
-
-    if (accidentals.flat && accidentals.sharp) {
+    if (accidentals.sharp && accidentals.flat) {
         return { 'string': string, 'note': randomBoolean() ? note : transpose(note) }
     }
-
     if (!accidentals.sharp && !accidentals.flat && note.length === 3) {
         return { 'string': string, 'note': note.substring(0, 1) + note.substring(2, 3) }
     }
-
-    return { 'string': string, 'note': note }
-
-
 }
 
 export const pitchToNote = (freq) => {
 
-    if (freq === null) {
+    if (freq === null || freq < 31 || freq > 530) {
         return null
     }
 
@@ -69,12 +63,14 @@ export const pitchToNote = (freq) => {
     const halfStepsBelowMiddleC = Math.round(12.0 * Math.log2(freq / c0))
     const octave = Math.floor(halfStepsBelowMiddleC / 12.0)
     const sharp = sharps[Math.floor(halfStepsBelowMiddleC % 12)]
-    const note = sharp === transpose(sharp) ? sharp : (sharp + octave) + "/" + transpose(sharp) + octave
+    const flat = transpose(sharp)
+    const note = (flat === sharp) ? sharp : sharp + "/" + flat
 
     return {
-        sharp: sharp + octave,
-        flat: transpose(sharp) + octave,
-        note: note
+        sharp: sharp,
+        flat: flat,
+        note: note,
+        octave: octave,
     }
 
 }

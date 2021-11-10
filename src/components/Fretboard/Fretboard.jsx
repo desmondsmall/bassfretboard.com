@@ -35,6 +35,8 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     const [noteToPlay, setNoteToPlay] = useState()
     const [correct, setCorrect] = useState()
 
+    console.log("fretboard rendered")
+
     useEffect(() => {
         if (listening) {
             setNoteToPlay(getFretboardNote(strings, frets, accidentals))
@@ -49,9 +51,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     }, [correct])
 
     const isCorrect = (noteToPlay, notePlaying) => {
-        let thisNoteToPlay = noteToPlay.note
-        let thisNotePlaying = notePlaying.sharpNote
-        if (thisNoteToPlay === thisNotePlaying) {
+        if ((noteToPlay.note === notePlaying.sharp) || (noteToPlay.note === notePlaying.flat)) {
             setCorrect(true)
             console.log("CORRECT")
         }
@@ -84,7 +84,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
             {(listening && noteToPlay) &&
                 <>
                     play {noteToPlay.note} on {noteToPlay.string}
-                    <button onClick={()=>setListening()}>stop</button>
+                    <button onClick={() => setListening()}>stop</button>
                     <button onClick={() => setNoteToPlay(getFretboardNote(strings, frets, accidentals))}>Skip</button>
                     <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} />
                 </>
