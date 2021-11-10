@@ -37,12 +37,15 @@ export const getFretboardNote = (strings, fretMinMax, accidentals) => {
     const note = notes[string][fret]
 
     // Change the sharp or flat depending on the options
+    
     if (!accidentals.sharp && accidentals.flat) {
         return { 'string': string, 'note': transpose(note) }
     }
+
     if (accidentals.sharp && accidentals.flat) {
         return { 'string': string, 'note': randomBoolean() ? note : transpose(note) }
     }
+
     if (!accidentals.sharp && !accidentals.flat) {
         if (note.length === 3) {
             let newNote = note.substring(0, 1) + note.substring(2, 3)

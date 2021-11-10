@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import { Fretboard } from '../src/components/Fretboard/Fretboard'
 import { Welcome } from '../src/components/Welcome'
 import { Start } from '../src/components/Start'
+import { CircleOfFifths } from '../src/components/CircleOfFifths/CircleOfFifths'
+import { Fretboard } from '../src/components/Fretboard/Fretboard'
 
 export default function Home() {
 
@@ -12,6 +13,24 @@ export default function Home() {
   const [optionsIsOpen, setOptionsIsOpen] = useState()
 
   const start = <Start userAudio={userAudio} setUserAudio={setUserAudio} setListening={setListening} />
+
+  const playModeProps = {
+    userAudio: userAudio,
+    listening: listening,
+    setListening: setListening,
+    optionsIsOpen: optionsIsOpen,
+    start: start
+  }
+
+  const renderPlayMode = () => {
+    switch (playMode) {
+      case 'fretboard':
+        return <Fretboard {...playModeProps} />
+
+      case 'circle of fifths':
+        return <CircleOfFifths {...playModeProps} />
+    }
+  }
 
   console.log("home rendered")
 
@@ -38,15 +57,7 @@ export default function Home() {
         />
       }
 
-      {playMode === 'fretboard' &&
-        <Fretboard
-          userAudio={userAudio}
-          listening={listening}
-          setListening={setListening}
-          optionsIsOpen={optionsIsOpen}
-          start={start}
-        />
-      }
+      {renderPlayMode()}
 
     </>
   )

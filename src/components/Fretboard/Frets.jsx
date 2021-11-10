@@ -3,6 +3,7 @@ export const Frets = ({ fretMinMax, setFretMinMax }) => {
     const handleClick = (e, name) => {
         let fret = Number(e.target.value)
         let separator = 1
+        
         if (
             (name === "min" && (fret + separator) < fretMinMax.max) ||
             (name === "max" && (fret - separator) > fretMinMax.min)
