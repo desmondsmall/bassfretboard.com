@@ -28,9 +28,9 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
         {
             name: 'G',
             selected: false
-        }
+        },
     ])
-    const [fretMinMax, setFretMinMax] = useState([1,7])
+    const [fretMinMax, setFretMinMax] = useState({ min: 1, max: 7 })
     const [accidentals, setAccidentals] = useState({ sharp: true, flat: false })
     const [noteToPlay, setNoteToPlay] = useState()
     const [correct, setCorrect] = useState()
@@ -80,7 +80,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
                     {start}
                 </Options>
             }
-            
+
             {(listening && noteToPlay) &&
                 <>
                     play {noteToPlay.note} on {noteToPlay.string}

@@ -33,19 +33,24 @@ export const getFretboardNote = (strings, fretMinMax, accidentals) => {
 
     // Generate a random string and note
     const string = selectedStrings[Math.floor(Math.random() * selectedStrings.length)]
-    const fret = randomIntFromInterval(fretMinMax[0], fretMinMax[1])
+    const fret = randomIntFromInterval(fretMinMax.min, fretMinMax.max)
     const note = notes[string][fret]
 
     // Change the sharp or flat depending on the options
-    if (accidentals.sharp && !accidentals.flat) {
-        return { 'string': string, 'note': note }
-    }
     if (!accidentals.sharp && accidentals.flat) {
         return { 'string': string, 'note': transpose(note) }
     }
     if (accidentals.sharp && accidentals.flat) {
         return { 'string': string, 'note': randomBoolean() ? note : transpose(note) }
     }
+    if (!accidentals.sharp && !accidentals.flat) {
+        if (note.length === 3) {
+            let newNote = note.substring(0, 1) + note.substring(2, 3)
+            return { 'string': string, 'note': newNote }
+        }
+    }
+
+    return { 'string': string, note: note }
 }
 
 export const pitchToNote = (freq) => {

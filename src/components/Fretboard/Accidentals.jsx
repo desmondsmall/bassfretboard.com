@@ -1,27 +1,24 @@
 export const Accidentals = ({ accidentals, setAccidentals }) => {
 
-    const handleClick = (name) => {
-        if ((name === "sharp" && accidentals.flat) || (name === "flat" && accidentals.sharp)) {
-            setAccidentals(accidentals => ({ ...accidentals, [name]: !accidentals[name] }))
-        }
+    const handleClick = (name, value) => {
+        let selected = value ? false : true
+        setAccidentals(accidentals => ({ ...accidentals, [name]: selected }))
     }
+
     const sharpSymbol = String.fromCharCode(9839)
     const flatSymbol = String.fromCharCode(9837)
 
     return (
         <>
-            <button
-                name="sharp"
-                onClick={() => handleClick("sharp")}
-                className={` ${accidentals.sharp ? 'active' : ''}`}>
-                {sharpSymbol}
-            </button>
-            <button
-                name="flat"
-                onClick={() => handleClick("flat")}
-                className={` ${accidentals.flat ? 'active' : ''}`}>
-                {flatSymbol}
-            </button>
+            {Object.entries(accidentals).map((accidental, key) =>
+                <button
+                    key={key}
+                    name={accidental[0]}
+                    onClick={() => handleClick(accidental[0], accidental[1])}
+                    className={` ${accidental[1] ? 'active' : ''}`}>
+                    {accidental[0] == "sharp" ? sharpSymbol : flatSymbol}
+                </button>
+            )}
         </>
     )
 }
