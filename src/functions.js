@@ -46,9 +46,6 @@ export const getFretboardNote = (strings, fretMinMax, accidentals) => {
     if (accidentals.sharp && accidentals.flat) {
         return { 'string': string, 'note': randomBoolean() ? note : transpose(note) }
     }
-    if (!accidentals.sharp && !accidentals.flat && note.length === 3) {
-        return { 'string': string, 'note': note.substring(0, 1) + note.substring(2, 3) }
-    }
 }
 
 export const pitchToNote = (freq) => {
