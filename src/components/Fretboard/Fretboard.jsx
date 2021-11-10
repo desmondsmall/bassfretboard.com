@@ -30,7 +30,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
             selected: false
         }
     ])
-    const [frets, setFrets] = useState({ min: 1, max: 7 })
+    const [fretMinMax, setFretMinMax] = useState([1,7])
     const [accidentals, setAccidentals] = useState({ sharp: true, flat: false })
     const [noteToPlay, setNoteToPlay] = useState()
     const [correct, setCorrect] = useState()
@@ -39,13 +39,13 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
     useEffect(() => {
         if (listening) {
-            setNoteToPlay(getFretboardNote(strings, frets, accidentals))
+            setNoteToPlay(getFretboardNote(strings, fretMinMax, accidentals))
         }
     }, [listening])
 
     useEffect(() => {
         if (correct) {
-            setNoteToPlay(getFretboardNote(strings, frets, accidentals))
+            setNoteToPlay(getFretboardNote(strings, fretMinMax, accidentals))
             setCorrect()
         }
     }, [correct])
@@ -74,18 +74,19 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
                         <fieldset className="">
                             <legend className="">Fret Range</legend>
-                            <Frets frets={frets} setFrets={setFrets} />
+                            <Frets fretMinMax={fretMinMax} setFretMinMax={setFretMinMax} />
                         </fieldset>
                     </div>
                     {start}
                 </Options>
             }
-
+            
             {(listening && noteToPlay) &&
                 <>
                     play {noteToPlay.note} on {noteToPlay.string}
+
                     <button onClick={() => setListening()}>stop</button>
-                    <button onClick={() => setNoteToPlay(getFretboardNote(strings, frets, accidentals))}>Skip</button>
+                    <button onClick={() => setNoteToPlay(getFretboardNote(strings, fretMinMax, accidentals))}>Skip</button>
                     <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} />
                 </>
             }

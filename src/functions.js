@@ -16,7 +16,7 @@ export const transpose = (note) => {
     return note
 }
 
-export const getFretboardNote = (strings, frets, accidentals) => {
+export const getFretboardNote = (strings, fretMinMax, accidentals) => {
 
     // Collect the selected strings
     const selectedStrings = []
@@ -33,7 +33,7 @@ export const getFretboardNote = (strings, frets, accidentals) => {
 
     // Generate a random string and note
     const string = selectedStrings[Math.floor(Math.random() * selectedStrings.length)]
-    const fret = randomIntFromInterval(frets.min, frets.max)
+    const fret = randomIntFromInterval(fretMinMax[0], fretMinMax[1])
     const note = notes[string][fret]
 
     // Change the sharp or flat depending on the options
