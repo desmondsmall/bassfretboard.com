@@ -17,21 +17,19 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     const [fourths, setFourths] = useState(['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'B', 'E', 'A', 'D', 'G'])
     const [fifths, setFifths] = useState(['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'])
 
-    console.log("circle of fifths render")
-
     useEffect(() => {
         if (listening) {
-            if (startingNote === "random" && direction === "fourths") {
-
+            if (startingNote === "random") {
+                let array = direction === "fourths" ? [...fourths] : [...fifths]
+                console.log(direction)
                 let startingPosition = randomIntFromInterval(1, 11)
-                console.log(startingPosition + " is " + fourths[startingPosition])
+                console.log(startingPosition + " is " + array[startingPosition])
 
-                let newArray = [...fourths]
+                let newArray = [...array]
                 let chunk = newArray.slice(0, startingPosition)
                 newArray.splice(0, startingPosition)
                 console.log(newArray.concat(chunk))
-                setFourths(newArray.concat(chunk))
-
+                direction === "fourths" ? setFourths(newArray.concat(chunk)) : setFifths(newArray.concat(chunk))
             }
         }
     }, [listening])
@@ -41,13 +39,15 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     }, [fourths])
 
     useEffect(() => {
+        setNoteToPlay(fifths[0])
+    }, [fifths])
+
+    useEffect(() => {
         if (correct) {
-            if (direction === "fourths") {
-                const newArray = [...fourths]
-                const oldNote = newArray.shift()
-                newArray.push(oldNote)
-                setFourths(newArray)
-            }
+            let newArray = direction === "fourths" ? [...fourths] : [...fifths]
+            let oldNote = newArray.shift()
+            newArray.push(oldNote)
+            direction === "fourths" ? setFourths(newArray) : setFifths(newArray)
             setCorrect()
         }
     }, [correct])
