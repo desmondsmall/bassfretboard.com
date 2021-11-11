@@ -4,6 +4,7 @@ import { Analyser } from '../Analyser'
 import { Direction } from './Direction'
 import { StartingNote } from './StartingNote'
 import { Fieldset } from '../Fieldset'
+import { Diagram } from './Diagram'
 import { randomIntFromInterval } from '../../functions'
 
 export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOpen, start }) => {
@@ -13,6 +14,7 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
 
     const [direction, setDirection] = useState("fourths")
     const [startingNote, setStartingNote] = useState("c")
+    const [diagram, setDiagram] = useState(true)
     const [correct, setCorrect] = useState()
     const [noteToPlay, setNoteToPlay] = useState()
     const [format, setFormat] = useState("flat")
@@ -83,8 +85,12 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
                         <Direction direction={direction} setDirection={setDirection} />
                     </Fieldset>
 
-                    <Fieldset name="Starting Note">
+                    <Fieldset name="Start on">
                         <StartingNote startingNote={startingNote} setStartingNote={setStartingNote} />
+                    </Fieldset>
+
+                    <Fieldset name="ShowDiagram">
+                        <Diagram diagram={diagram} setDiagram={setDiagram} />
                     </Fieldset>
                     {start}
                 </Options>
