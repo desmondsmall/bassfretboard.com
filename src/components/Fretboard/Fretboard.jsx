@@ -34,6 +34,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     ])
     const [fretMinMax, setFretMinMax] = useState({ min: 1, max: 7 })
     const [accidentals, setAccidentals] = useState({ sharp: true, flat: false })
+    const [previousNoteToPlay, setPreviousNoteToPlay] = useState()
     const [noteToPlay, setNoteToPlay] = useState()
     const [correct, setCorrect] = useState()
 
@@ -81,13 +82,15 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
     useEffect(() => {
         if (listening) {
-            setNoteToPlay(getFretboardNote(strings, fretMinMax, accidentals))
+            let note = getFretboardNote(strings, fretMinMax, accidentals)
+            setNoteToPlay(note)
+            setPreviousNoteToPlay(note)
         }
     }, [listening])
 
     useEffect(() => {
         if (correct) {
-            setNoteToPlay(getFretboardNote(strings, fretMinMax, accidentals))
+            newNoteToPlayWithoutDuplicates()
             setCorrect()
         }
     }, [correct])
@@ -97,6 +100,18 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
             (noteToPlay.note === notePlaying.flat + notePlaying.octave)) {
             setCorrect(true)
             console.log("CORRECT")
+        }
+    }
+
+    const newNoteToPlayWithoutDuplicates = () => {
+        while (true) {
+            let note = getFretboardNote(strings, fretMinMax, accidentals)
+            if (note.note != previousNoteToPlay.note) {
+                setNoteToPlay(note)
+                setPreviousNoteToPlay(note)
+                console.log("here and broke")
+                break
+            }
         }
     }
 
@@ -124,7 +139,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
                     play {noteToPlay.note} on {noteToPlay.string}
 
                     <button onClick={() => setListening()}>stop</button>
-                    <button onClick={() => setNoteToPlay(getFretboardNote(strings, fretMinMax, accidentals))}>Skip</button>
+                    <button onClick={newNoteToPlayWithoutDuplicates}>Skip</button>
                     <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} />
                 </>
             }
