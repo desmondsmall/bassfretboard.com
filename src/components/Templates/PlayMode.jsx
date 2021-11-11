@@ -5,9 +5,9 @@ import { getNoteToPlay } from '../../functions'
 
 /* 
     Each play mode has its own component that must
-        1) display options and maintain its state
-        2) generate a note for the user to play: noteToPlay
-        3) provide a function to check if that note is correct: isCorrect()
+        1) display options and maintain option state
+        2) generate a note for the user to play (noteToPlay)
+        3) provide a function to check if that note is correct (isCorrect())
         4) pass noteToPlay and isCorrect() to Analyser
 */
 
@@ -17,11 +17,18 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     const [optionOne, setOptionOne] = useState("default")
     const [optionTwo, setOptionTwo] = useState("default")
 
+
+    // Analyser will take am optional "format" prop which by defualt returns NotePlaying.note (A#/Bb)
+    // If you want the analyser to return A# (NotePlaying.sharp) set format to "sharp"; if you want Bb
+    // set to "flat" (NotePlaying.flat). Note this will affect how you write the isCorrect function, 
+    // i.e. what format is NoteToPlay in?
+    const [format, setFormat] = useState()
+
     // required
     const [correct, setCorrect] = useState()
     const [noteToPlay, setNoteToPlay] = useState()
 
-    // get note to play
+    // set note to play 
     useEffect(() => {
         if (listening) {
             setNoteToPlay(getNoteToPlay())
