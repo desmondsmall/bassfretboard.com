@@ -109,7 +109,6 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
             if (note.note != previousNoteToPlay.note) {
                 setNoteToPlay(note)
                 setPreviousNoteToPlay(note)
-                console.log("here and broke")
                 break
             }
         }
