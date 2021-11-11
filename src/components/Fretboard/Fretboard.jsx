@@ -80,6 +80,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
         return { 'string': string, note: note }
     }
 
+    // Generate a noteToPlay
     useEffect(() => {
         if (listening) {
             let note = getFretboardNote(strings, fretMinMax, accidentals)
@@ -117,7 +118,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     return (
         <>
             {!listening &&
-                <Options optionsIsOpen={optionsIsOpen}>
+                <Options optionsIsOpen={optionsIsOpen} start={start}>
                     <Fieldset name="Strings">
                         <Strings strings={strings} setStrings={setStrings} />
                     </Fieldset>
@@ -129,7 +130,6 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
                     <Fieldset name="Fret Range">
                         <Frets fretMinMax={fretMinMax} setFretMinMax={setFretMinMax} />
                     </Fieldset>
-                    {start}
                 </Options>
             }
 

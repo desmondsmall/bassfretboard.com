@@ -1,7 +1,7 @@
 import { useBreakpointContext } from '../context/BreakpointContext'
 import { useWindowSize } from '../hooks/useWindowSize'
 
-export const Options = ({ children, optionsIsOpen }) => {
+export const Options = ({ children, optionsIsOpen, start }) => {
 
     const windowSize = useWindowSize()
     const breakpoints = useBreakpointContext()
@@ -16,6 +16,7 @@ export const Options = ({ children, optionsIsOpen }) => {
             {(windowSize.width >= breakpoints.md) &&
                 <div className="bg-blue-100">
                     {children}
+                    {start}
                 </div>
             }
         </>
