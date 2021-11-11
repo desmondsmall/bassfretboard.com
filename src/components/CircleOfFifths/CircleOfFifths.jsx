@@ -20,8 +20,8 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     const [fourths, setFourths] = useState(fourthsDefault)
     const [fifths, setFifths] = useState(fifthsDefault)
 
-    // Set NoteToPlay here when random startingNote is selected.
-    // Otherwise fourths and fifths useEffect hooks will handle it.
+    // Sets NoteToPlay when random startingNote is selected
+    // Otherwise fourths and fifths useEffect hooks handle it
     useEffect(() => {
         if (listening && startingNote === "random") {
             let array = direction === "fourths" ? [...fourths] : [...fifths]
@@ -49,7 +49,7 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
         setNoteToPlay(fifths[0])
     }, [fifths])
 
-    // When correct move the note to the end of the array
+    // When a note is correct move the note to the end of the array
     useEffect(() => {
         if (correct) {
             let newArray = direction === "fourths" ? [...fourths] : [...fifths]

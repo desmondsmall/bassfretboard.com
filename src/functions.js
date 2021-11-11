@@ -16,46 +16,6 @@ export const transpose = (note) => {
     return note
 }
 
-export const getFretboardNote = (strings, fretMinMax, accidentals) => {
-
-    // Collect the selected strings
-    const selectedStrings = []
-    strings.map((string) => {
-        if (string.selected) {
-            selectedStrings.push(string.name)
-        }
-    })
-
-    // Default to EADG if none are selected
-    if (selectedStrings.length === 0) {
-        selectedStrings.push('E', 'A', 'D', 'G')
-    }
-
-    // Generate a random string and note
-    const string = selectedStrings[Math.floor(Math.random() * selectedStrings.length)]
-    const fret = randomIntFromInterval(fretMinMax.min, fretMinMax.max)
-    const note = notes[string][fret]
-
-    // Change the sharp or flat depending on the options
-
-    if (!accidentals.sharp && accidentals.flat) {
-        return { 'string': string, 'note': transpose(note) }
-    }
-
-    if (accidentals.sharp && accidentals.flat) {
-        return { 'string': string, 'note': randomBoolean() ? note : transpose(note) }
-    }
-
-    if (!accidentals.sharp && !accidentals.flat) {
-        if (note.length === 3) {
-            let newNote = note.substring(0, 1) + note.substring(2, 3)
-            return { 'string': string, 'note': newNote }
-        }
-    }
-
-    return { 'string': string, note: note }
-}
-
 export const pitchToNote = (freq) => {
 
     if (freq === null || freq < 30 || freq > 530) {
