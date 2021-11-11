@@ -3,6 +3,7 @@ import { Options } from '../Options'
 import { Analyser } from '../Analyser'
 import { Accidentals } from './Accidentals'
 import { Strings } from './Strings'
+import { Fieldset } from '../Fieldset'
 import { Frets } from './Frets'
 import { getFretboardNote } from '../../functions'
 
@@ -39,7 +40,9 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
     useEffect(() => {
         if (listening) {
+            console.log("listeningsdisdfn")
             setNoteToPlay(getFretboardNote(strings, fretMinMax, accidentals))
+            console.log(noteToPlay.note +"here")
         }
     }, [listening])
 
@@ -51,7 +54,8 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     }, [correct])
 
     const isCorrect = (noteToPlay, notePlaying) => {
-        if ((noteToPlay.note === notePlaying.sharp) || (noteToPlay.note === notePlaying.flat)) {
+        if ((noteToPlay.note === notePlaying.sharp + notePlaying.octave) ||
+            (noteToPlay.note === notePlaying.flat + notePlaying.octave)) {
             setCorrect(true)
             console.log("CORRECT")
         }
@@ -61,22 +65,17 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
         <>
             {!listening &&
                 <Options optionsIsOpen={optionsIsOpen}>
-                    <div className="">
-                        <fieldset className="">
-                            <legend className="">Strings</legend>
-                            <Strings strings={strings} setStrings={setStrings} />
-                        </fieldset>
+                    <Fieldset name="Strings">
+                        <Strings strings={strings} setStrings={setStrings} />
+                    </Fieldset>
 
-                        <fieldset className="">
-                            <legend className="">Accidentals</legend>
-                            <Accidentals accidentals={accidentals} setAccidentals={setAccidentals} />
-                        </fieldset>
+                    <Fieldset name="Accidentals">
+                        <Accidentals accidentals={accidentals} setAccidentals={setAccidentals} />
+                    </Fieldset>
 
-                        <fieldset className="">
-                            <legend className="">Fret Range</legend>
-                            <Frets fretMinMax={fretMinMax} setFretMinMax={setFretMinMax} />
-                        </fieldset>
-                    </div>
+                    <Fieldset name="Fret Range">
+                        <Frets fretMinMax={fretMinMax} setFretMinMax={setFretMinMax} />
+                    </Fieldset>
                     {start}
                 </Options>
             }

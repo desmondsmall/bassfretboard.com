@@ -16,10 +16,6 @@ export const transpose = (note) => {
     return note
 }
 
-export const getCircleOfFifthsNote = (direction, startingNote, diagram) => {
-    return "NOTE TO PLAY"
-}
-
 export const getFretboardNote = (strings, fretMinMax, accidentals) => {
 
     // Collect the selected strings
@@ -41,7 +37,7 @@ export const getFretboardNote = (strings, fretMinMax, accidentals) => {
     const note = notes[string][fret]
 
     // Change the sharp or flat depending on the options
-    
+
     if (!accidentals.sharp && accidentals.flat) {
         return { 'string': string, 'note': transpose(note) }
     }
@@ -62,7 +58,7 @@ export const getFretboardNote = (strings, fretMinMax, accidentals) => {
 
 export const pitchToNote = (freq) => {
 
-    if (freq === null || freq < 31 || freq > 530) {
+    if (freq === null || freq < 30 || freq > 530) {
         return null
     }
 

@@ -14,24 +14,6 @@ export default function Home() {
 
   const start = <Start userAudio={userAudio} setUserAudio={setUserAudio} setListening={setListening} />
 
-  const playModeProps = {
-    userAudio: userAudio,
-    listening: listening,
-    setListening: setListening,
-    optionsIsOpen: optionsIsOpen,
-    start: start
-  }
-
-  const renderPlayMode = () => {
-    switch (playMode) {
-      case 'fretboard':
-        return <Fretboard {...playModeProps} />
-
-      case 'circle of fifths':
-        return <CircleOfFifths {...playModeProps} />
-    }
-  }
-
   console.log("home rendered")
 
   return (
@@ -56,7 +38,25 @@ export default function Home() {
         />
       }
 
-      {renderPlayMode()}
+      {playMode === 'fretboard' &&
+        <Fretboard
+          userAudio={userAudio}
+          listening={listening}
+          setListening={setListening}
+          optionsIsOpen={optionsIsOpen}
+          start={start}
+        />
+      }
+
+      {playMode === 'circle of fifths' &&
+        <CircleOfFifths
+          userAudio={userAudio}
+          listening={listening}
+          setListening={setListening}
+          optionsIsOpen={optionsIsOpen}
+          start={start}
+        />
+      }
 
     </>
   )

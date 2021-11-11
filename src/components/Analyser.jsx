@@ -3,7 +3,7 @@ import Pitchfinder from 'pitchfinder'
 import { pitchToNote } from '../functions'
 import useInterval from '../hooks/useInterval'
 
-export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay }) => {
+export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay, format }) => {
 
     const [notePlaying, setNotePlaying] = useState()
     const [context] = useState(new (window.AudioContext || window.webkitAudioContext)())
@@ -12,7 +12,7 @@ export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay }) => {
 
     const detectPitch = Pitchfinder.AMDF({
         sampleRate: context.sampleRate,
-        minFrequency: 31,
+        minFrequency: 30,
         maxFrequency: 530,
         sensitivity: 0.05
     });
@@ -31,16 +31,27 @@ export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay }) => {
 
     useEffect(() => {
         if (notePlaying != null) {
-            console.log(notePlaying)
+            //console.log(notePlaying)
         }
     })
+
+    const renderNotePlaying = () => {
+        switch (format) {
+            case 'sharp':
+                return notePlaying.sharp
+            case 'flat':
+                return notePlaying.flat
+            default:
+                return notePlaying.note
+        }
+    }
 
     return (
         <>
             {notePlaying &&
                 <h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">
-                    {notePlaying.note}
-                    </h1>
+                    {renderNotePlaying()}
+                </h1>
             }
             {!notePlaying &&
                 < h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">...</h1>

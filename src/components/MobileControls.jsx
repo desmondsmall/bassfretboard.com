@@ -7,10 +7,6 @@ export const MobileControls = ({ start, optionsIsOpen, setOptionsIsOpen }) => {
     const windowSize = useWindowSize()
     const breakpoints = useBreakpointContext()
 
-    useEffect(() => {
-        setOptionsIsOpen(false)
-    }, [windowSize.width])
-
     return (
         <>
             {(windowSize.width < breakpoints.md) &&

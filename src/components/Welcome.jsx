@@ -1,6 +1,7 @@
 import { MobileControls } from './MobileControls'
 
 export const Welcome = ({ setPlayMode, playMode, start, optionsIsOpen, setOptionsIsOpen }) => {
+    console.log("welcome rendered")
     return (
         <>
             <div className="border-b-2 border-black my-4 pb-4">
