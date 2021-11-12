@@ -4,12 +4,13 @@ import { Welcome } from '../src/components/Welcome'
 import { Start } from '../src/components/Start'
 import { CircleOfFifths } from '../src/components/CircleOfFifths/CircleOfFifths'
 import { Fretboard } from '../src/components/Fretboard/Fretboard'
+import { SelectPlayMode } from '../src/components/SelectPlayMode'
 
 export default function Home() {
 
   const [userAudio, setUserAudio] = useState()
   const [listening, setListening] = useState()
-  const [playMode, setPlayMode] = useState('circle of fifths')
+  const [playMode, setPlayMode] = useState('fretboard')
   const [optionsIsOpen, setOptionsIsOpen] = useState()
 
   const start = <Start userAudio={userAudio} setUserAudio={setUserAudio} setListening={setListening} />

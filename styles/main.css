@@ -1,14 +1,35 @@
-* {
-    font-family: monospace;
-    font-size: 18px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 }
 
-button, select {
-    border-radius: 4px;
-    border: 1px solid black;
-    padding: 5px 15px;
+.default-p {
+    @apply p-4;
+}
+
+@screen sm {
+    .default-p {
+        @apply p-6;
+    }
+}
+@screen md {
+    .default-p {
+        @apply p-8;
+    }
+}
+
+p {
+    @apply leading-relaxed;
+}
+
+button,
+select {
+    @apply p-2 rounded-lg border border-gray-200 bg-gray-100;
 }
 
 .active {
-    background: royalblue;
+    @apply bg-gray-200;
 }

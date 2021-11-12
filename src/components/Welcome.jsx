@@ -1,24 +1,22 @@
 import { MobileControls } from './MobileControls'
+import { SelectPlayMode } from './SelectPlayMode'
 
 export const Welcome = ({ setPlayMode, playMode, start, optionsIsOpen, setOptionsIsOpen }) => {
+
     console.log("welcome rendered")
+
     return (
         <>
-            <div className="border-b-2 border-black my-4 pb-4">
-                welcome to bass trainer
-                BLAH BLAH
-            </div>
+            <div className="default-p min-h-screen flex flex-col justify-center">
+                <h1 className="text-3xl text-black mb-5">Bass Trainer</h1>
 
-            <div className="flex items-center">
-                <label htmlFor="practice-mode" className="mr-2">Practice Mode:</label>
-                <select
-                    id="practice-mode"
-                    onChange={(e) => setPlayMode(e.target.value)}
-                    value={playMode}
-                    className="border py-2 rounded-lg shadow-inner text-sm mr-2">
-                    <option value="fretboard">Fretboard</option>
-                    <option value="circle of fifths">Circle of Fifths</option>
-                </select>
+                <p className="">
+                    <em>Practice by playing along.</em> Plug your bass into an audio interface or put a microphone near your amp.
+                    Select a practice mode and press start!
+                </p>
+
+                <SelectPlayMode playMode={playMode} setPlayMode={setPlayMode} />
+
             </div>
 
             <MobileControls start={start} optionsIsOpen={optionsIsOpen} setOptionsIsOpen={setOptionsIsOpen} />
