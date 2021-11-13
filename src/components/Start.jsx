@@ -20,7 +20,7 @@ export const Start = ({ userAudio, setUserAudio, setListening }) => {
 
     return (
         <>
-            <button onClick={click} className="w-1/2">start</button>
+            <button onClick={click} className="w-1/2 md:w-full md:py-4 active">start</button>
         </>
     )
 }

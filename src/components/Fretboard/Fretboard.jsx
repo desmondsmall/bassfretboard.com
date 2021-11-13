@@ -118,7 +118,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     return (
         <>
             {!listening &&
-                <Options optionsIsOpen={optionsIsOpen} start={start}>
+                <Options optionsIsOpen={optionsIsOpen} start={start} title="Fretboard Options">
                     <Fieldset name="Strings">
                         <Strings strings={strings} setStrings={setStrings} />
                     </Fieldset>

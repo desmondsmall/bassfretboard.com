@@ -15,14 +15,14 @@ export const SelectPlayMode = ({ playMode, setPlayMode }) => {
                 <div className="mb-6">
                     <label
                         for="practice-mode"
-                        className="block bg-white rounded-l-lg rounded-r-3xl mt-2 py-3 pl-2 pr-6 absolute border">
+                        className="block bg-white rounded-l-lg rounded-r-3xl mt-2 py-2 pl-2 pr-6 md:py-3 md:pr-10 absolute border">
                         Select Mode
                     </label>
                     <select
                         id="practice-mode"
                         onChange={(e) => setPlayMode(e.target.value)}
                         value={playMode}
-                        className="w-full my-2 py-3 pr-2 cursor-pointer text-right">
+                        className="w-full my-2 py-2 pr-2 cursor-pointer text-right md:py-3">
                         <option value="fretboard">Fretboard</option>
                         <option value="circle of fifths">Circle of Fifths</option>
                     </select>

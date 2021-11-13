@@ -11,7 +11,7 @@ export default function Home() {
   const [userAudio, setUserAudio] = useState()
   const [listening, setListening] = useState()
   const [playMode, setPlayMode] = useState('fretboard')
-  const [optionsIsOpen, setOptionsIsOpen] = useState()
+  const [optionsIsOpen, setOptionsIsOpen] = useState(true)
 
   const start = <Start userAudio={userAudio} setUserAudio={setUserAudio} setListening={setListening} />
 
@@ -29,35 +29,38 @@ export default function Home() {
         <meta name="description" content="wee" />
       </Head>
 
-      {!listening &&
-        <Welcome
-          playMode={playMode}
-          setPlayMode={setPlayMode}
-          start={start}
-          optionsIsOpen={optionsIsOpen}
-          setOptionsIsOpen={setOptionsIsOpen}
-        />
-      }
+      <div className="">
+        {!listening &&
+          <Welcome
+            playMode={playMode}
+            setPlayMode={setPlayMode}
+            start={start}
+            optionsIsOpen={optionsIsOpen}
+            setOptionsIsOpen={setOptionsIsOpen}
+          />
+        }
 
-      {playMode === 'fretboard' &&
-        <Fretboard
-          userAudio={userAudio}
-          listening={listening}
-          setListening={setListening}
-          optionsIsOpen={optionsIsOpen}
-          start={start}
-        />
-      }
+        {playMode === 'fretboard' &&
+          <Fretboard
+            userAudio={userAudio}
+            listening={listening}
+            setListening={setListening}
+            optionsIsOpen={optionsIsOpen}
+            start={start}
+          />
+        }
 
-      {playMode === 'circle of fifths' &&
-        <CircleOfFifths
-          userAudio={userAudio}
-          listening={listening}
-          setListening={setListening}
-          optionsIsOpen={optionsIsOpen}
-          start={start}
-        />
-      }
+        {playMode === 'circle of fifths' &&
+          <CircleOfFifths
+            userAudio={userAudio}
+            listening={listening}
+            setListening={setListening}
+            optionsIsOpen={optionsIsOpen}
+            start={start}
+          />
+        }
+        
+      </div>
 
     </>
   )

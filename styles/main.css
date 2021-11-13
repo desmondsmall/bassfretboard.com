@@ -30,6 +30,16 @@ select {
     @apply p-2 rounded-lg border border-gray-200 bg-gray-100;
 }
 
+.option-button {
+    @apply h-12 rounded-lg mx-1 my-1 float-left;
+    min-width: 3em;
+    min-height: 3em;
+}
+
 .active {
-    @apply bg-gray-200;
+    @apply bg-blue-100;
+}
+
+.fieldset-container-margin-fix:nth-last-child(1) {
+    margin-right: 0;
 }

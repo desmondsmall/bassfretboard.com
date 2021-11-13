@@ -80,16 +80,16 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     return (
         <>
             {!listening &&
-                <Options optionsIsOpen={optionsIsOpen} start={start}>
+                <Options optionsIsOpen={optionsIsOpen} start={start} title="Circle of Fifths Options">
                     <Fieldset name="Direction">
                         <Direction direction={direction} setDirection={setDirection} />
                     </Fieldset>
 
-                    <Fieldset name="Start on">
+                    <Fieldset name="Starting Note">
                         <StartingNote startingNote={startingNote} setStartingNote={setStartingNote} />
                     </Fieldset>
 
-                    <Fieldset name="ShowDiagram">
+                    <Fieldset name="Diagram">
                         <Diagram diagram={diagram} setDiagram={setDiagram} />
                     </Fieldset>
                 </Options>

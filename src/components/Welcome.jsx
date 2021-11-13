@@ -7,7 +7,7 @@ export const Welcome = ({ setPlayMode, playMode, start, optionsIsOpen, setOption
 
     return (
         <>
-            <div className="default-p min-h-screen flex flex-col justify-center">
+            <div className="default-p min-h-screen flex flex-col justify-center md:-mt-12 md:w-4/5 lg:w-1/2 mx-auto">
                 <h1 className="text-3xl text-black mb-5">Bass Trainer</h1>
 
                 <p className="">
@@ -16,6 +16,8 @@ export const Welcome = ({ setPlayMode, playMode, start, optionsIsOpen, setOption
                 </p>
 
                 <SelectPlayMode playMode={playMode} setPlayMode={setPlayMode} />
+
+                <div className="hidden md:block">{start}</div>
 
             </div>
 
