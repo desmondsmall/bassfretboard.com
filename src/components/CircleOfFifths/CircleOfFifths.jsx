@@ -7,7 +7,7 @@ import { Fieldset } from '../Fieldset'
 import { Diagram } from './Diagram'
 import { randomIntFromInterval } from '../../functions'
 
-export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOpen, start }) => {
+export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOpen, start, playMode, setPlayMode }) => {
 
     const fourthsDefault = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'B', 'E', 'A', 'D', 'G']
     const fifthsDefault = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F']
@@ -80,7 +80,7 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     return (
         <>
             {!listening &&
-                <Options optionsIsOpen={optionsIsOpen} start={start} title="Circle of Fifths Options">
+                <Options optionsIsOpen={optionsIsOpen} start={start} title="Circle of Fifths Options" playMode={playMode} setPlayMode={setPlayMode}>
                     <Fieldset name="Direction">
                         <Direction direction={direction} setDirection={setDirection} />
                     </Fieldset>

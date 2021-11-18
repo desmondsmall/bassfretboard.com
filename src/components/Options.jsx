@@ -1,7 +1,8 @@
 import { useBreakpointContext } from '../context/BreakpointContext'
 import { useWindowSize } from '../hooks/useWindowSize'
+import { SelectPlayMode } from './SelectPlayMode'
 
-export const Options = ({ children, optionsIsOpen, start, title }) => {
+export const Options = ({ children, optionsIsOpen, start, title, playMode, setPlayMode }) => {
 
     const windowSize = useWindowSize()
     const breakpoints = useBreakpointContext()
@@ -24,7 +25,10 @@ export const Options = ({ children, optionsIsOpen, start, title }) => {
             {/* Desktop */}
             {(windowSize.width >= breakpoints.md) &&
                 <>
-                    <div className="px-4 py-5 absolute bottom-0 inset-x-0 flex lg:w-5/6 mx-auto bg-gray-100">
+                    <div className="hidden top-0 w-80">
+                        <SelectPlayMode playMode={playMode} setPlayMode={setPlayMode} />
+                    </div>
+                    <div className="px-4 py-5 absolute bottom-0 inset-x-0 flex lg:py-6 lg:px-10 mx-auto bg-gray-100">
                         {children}
                     </div>
                 </>

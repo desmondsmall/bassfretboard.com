@@ -14,19 +14,22 @@ export const Frets = ({ fretMinMax, setFretMinMax }) => {
 
     return (
         <>
-            {Object.entries(fretMinMax).map((fret, key) =>
-                <>
-                    <input
-                        key={key}
-                        type="number"
-                        pattern="\d*"
-                        min="1" max="18"
-                        value={fret[1]}
-                        name={fret[0]}
-                        onChange={(e) => handleClick(e, fret[0])}
-                        className="active text-center option-button w-14" />
-                </>
-            )}
+            <input
+                type="number"
+                pattern="\d*"
+                min="1" max="18"
+                value={fretMinMax.min}
+                name="min"
+                onChange={(e) => handleClick(e, "min")}
+                className="active text-center option-button w-14" />
+            <input
+                type="number"
+                pattern="\d*"
+                min="1" max="18"
+                value={fretMinMax.max}
+                name="max"
+                onChange={(e) => handleClick(e, "max")}
+                className="active text-center option-button w-14" />
         </>
     )
 }

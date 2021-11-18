@@ -15,11 +15,12 @@ export const Fieldset = ({ children, name }) => {
                     {children}
                 </fieldset>
             }
+
             {/* Desktop */}
-            {(windowSize.width >= breakpoints.md) &&
+            {((windowSize.width >= breakpoints.md)) &&
                 <div className="w-full mr-4 fieldset-container-margin-fix">
-                    <fieldset className="flex border justify-center text-center px-6 py-3">
-                        <legend className="mb-2 md:mb-3">{name}</legend>
+                    <fieldset className="flex justify-center text-center px-6 py-3">
+                        <legend className="mb-2 md:mb-0 w-full">{name}</legend>
                         {children}
                     </fieldset>
                 </div>

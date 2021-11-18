@@ -3,7 +3,7 @@ import { createContext, useContext } from 'react';
 const BreakpointContext = createContext()
 
 export const BreakpointProvider = ({ children }) => {
-    let breakpoints = { md: 768, sm: 375 }
+    let breakpoints = { sm: 375, md: 768, lg: 1024, xl: 1280 }
 
     return (
         <BreakpointContext.Provider value={breakpoints}>

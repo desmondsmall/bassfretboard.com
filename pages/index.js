@@ -43,6 +43,8 @@ export default function Home() {
         {playMode === 'fretboard' &&
           <Fretboard
             userAudio={userAudio}
+            playMode={playMode}
+            setPlayMode={setPlayMode}
             listening={listening}
             setListening={setListening}
             optionsIsOpen={optionsIsOpen}
@@ -53,6 +55,8 @@ export default function Home() {
         {playMode === 'circle of fifths' &&
           <CircleOfFifths
             userAudio={userAudio}
+            playMode={playMode}
+            setPlayMode={setPlayMode}
             listening={listening}
             setListening={setListening}
             optionsIsOpen={optionsIsOpen}

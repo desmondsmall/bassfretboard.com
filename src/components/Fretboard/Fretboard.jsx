@@ -8,7 +8,7 @@ import { Frets } from './Frets'
 import { randomBoolean, randomIntFromInterval, transpose } from '../../functions'
 import { notes } from '../../notes'
 
-export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, start }) => {
+export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, start, playMode, setPlayMode }) => {
 
     const [strings, setStrings] = useState([
         {
@@ -118,7 +118,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     return (
         <>
             {!listening &&
-                <Options optionsIsOpen={optionsIsOpen} start={start} title="Fretboard Options">
+                <Options optionsIsOpen={optionsIsOpen} start={start} title="Fretboard Options" playMode={playMode} setPlayMode={setPlayMode}>
                     <Fieldset name="Strings">
                         <Strings strings={strings} setStrings={setStrings} />
                     </Fieldset>
