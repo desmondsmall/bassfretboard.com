@@ -3,12 +3,12 @@ export const StartingNote = ({ startingNote, setStartingNote }) => {
         <>
             <button
                 onClick={() => setStartingNote('c')}
-                className={` ${startingNote === 'c' ? 'active' : ''}`}>
+                className={`option-button ${startingNote === 'c' ? 'active' : ''}`}>
                 C
             </button>
             <button
                 onClick={() => setStartingNote('random')}
-                className={` ${startingNote === 'random' ? 'active' : ''}`}>
+                className={`option-button ${startingNote === 'random' ? 'active' : ''}`}>
                 Random
             </button>
         </>

@@ -3,12 +3,12 @@ export const Diagram = ({ diagram, setDiagram }) => {
         <>
             <button
                 onClick={() => setDiagram(true)}
-                className={` ${diagram ? 'active' : ''}`}>
+                className={`option-button ${diagram ? 'active' : ''}`}>
                 On
             </button>
             <button
                 onClick={() => setDiagram()}
-                className={` ${!diagram ? 'active' : ''}`}>
+                className={`option-button ${!diagram ? 'active' : ''}`}>
                 Off
             </button>
         </>

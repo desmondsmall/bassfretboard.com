@@ -5,13 +5,13 @@ export const Direction = ({ direction, setDirection }) => {
         <>
             <button
                 onClick={() => setDirection('fourths')}
-                className={` ${direction === 'fourths' ? 'active' : ''}`}>
-                4ths <FiRotateCcw className="inline text-xl" />
+                className={`option-button md:flex md:items-center md:justify-center md:w-24 ${direction === 'fourths' ? 'active' : ''}`}>
+                4ths <FiRotateCcw className="inline md:block md:ml-2 text-xl" />
             </button>
             <button
                 onClick={() => setDirection('fifths')}
-                className={` ${direction == 'fifths' ? 'active' : ''}`}>
-                5ths <FiRotateCw className="inline text-xl" />
+                className={`option-button md:flex md:items-center md:justify-center md:w-24 ${direction == 'fifths' ? 'active' : ''}`}>
+                5ths <FiRotateCw className="inline md:block md:ml-2 text-xl" />
             </button>
         </>
     )

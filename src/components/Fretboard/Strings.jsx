@@ -19,7 +19,7 @@ export const Strings = ({ strings, setStrings }) => {
                 <button
                     key={key}
                     onClick={() => handleClick(string.name)}
-                    className={` ${string.selected ? 'active' : ''}`}>
+                    className={`option-button ${string.selected ? 'active' : ''}`}>
                     {string.name}
                 </button>
 
