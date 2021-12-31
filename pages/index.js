@@ -38,13 +38,14 @@ export default function Home() {
         <meta name="description" content="wee" />
       </Head>
 
-      <div className="top-0 w-full h-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 z-50 absolute"></div>
-      <GiGuitarBassHead className="text-8xl md:text-9xl rotate-45 rounded-full p-2 text-white absolute top-4 left-0 z-50" />
 
       {!listening &&
         <>
+          <GiGuitarBassHead className="text-7xl md:text-9xl rotate-45 rounded-full p-2 text-white absolute top-4 left-0 z-50" />
+          <div className="top-0 w-full h-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 z-50 absolute"></div>
+          
           <div className="z-10 relative
-            default-p flex flex-col justify-center mx-auto min-h-screen -mt-2 lg:-mt-16
+            default-p flex flex-col justify-center mx-auto min-h-screen -mt-6 lg:-mt-16
             md:-mt-12 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/5">
             <div className="2xl:px-6 text-center">
               <h1 className="font-mono mb-2 text-3xl uppercase tracking-widest text-gradient bg-gradient-to-t from-blue-200 via-cyan-100 to-sky-300 lg:text-5xl md:text-4xl md:mb-4">Bass Trainer</h1>
