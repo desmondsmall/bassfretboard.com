@@ -47,15 +47,8 @@ export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay, format }
     }
 
     return (
-        <>
-            {notePlaying &&
-                <h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">
-                    {renderNotePlaying()}
-                </h1>
-            }
-            {!notePlaying &&
-                < h1 className="absolute bottom-0 right-0 m-2 border-1 font-mono font-bold text-2xl">...</h1>
-            }
-        </>
+        <h1 className="absolute rounded-full mt-52 -ml-40 font-mono text-sm p-1 w-12 h-12 bg-blue-100 flex items-center justify-center">
+            {notePlaying ? renderNotePlaying() : <span className="text-sm tracking-widest">...</span>}
+        </h1>
     )
 }

@@ -1,5 +1,13 @@
 import { notes } from './notes'
 
+export const isFlat = (note) => {
+    if (note.includes("b")) {
+        return true
+    }
+
+    return false
+}
+
 export const transpose = (note) => {
     const range = ['F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
     const letter = note.slice(0, 1)

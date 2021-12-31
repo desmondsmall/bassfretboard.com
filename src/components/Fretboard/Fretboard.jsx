@@ -5,10 +5,12 @@ import { Accidentals } from './Accidentals'
 import { Strings } from './Strings'
 import { Fieldset } from '../Fieldset'
 import { Frets } from './Frets'
-import { randomBoolean, randomIntFromInterval, transpose } from '../../functions'
+import { isFlat, randomBoolean, randomIntFromInterval, transpose } from '../../functions'
 import { notes } from '../../notes'
+import { PlayArea } from '../PlayArea'
+import { Controls } from '../PlayArea/Controls'
 
-export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, start, playMode, setPlayMode }) => {
+export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, start, playMode, setPlayMode, setOptionsIsOpen }) => {
 
     const [strings, setStrings] = useState([
         {
@@ -37,6 +39,8 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     const [previousNoteToPlay, setPreviousNoteToPlay] = useState()
     const [noteToPlay, setNoteToPlay] = useState()
     const [correct, setCorrect] = useState()
+    const [format, setFormat] = useState()
+    const [correctCount, setCorrectCount] = useState(0)
 
     console.log("fretboard rendered")
 
@@ -79,11 +83,11 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
         return { 'string': string, note: note }
     }
-
-    // Generate a noteToPlay
+    // Generate a noteToPlay, reset correct notes
     useEffect(() => {
         if (listening) {
             let note = getFretboardNote(strings, fretMinMax, accidentals)
+            isFlat(note.note) ? setFormat('flat') : setFormat('sharp')
             setNoteToPlay(note)
             setPreviousNoteToPlay(note)
         }
@@ -91,7 +95,8 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
     useEffect(() => {
         if (correct) {
-            newNoteToPlayWithoutDuplicates()
+            getNoteToPlayWithoutDuplicates()
+            setCorrectCount(correctCount + 1)
             setCorrect()
         }
     }, [correct])
@@ -104,10 +109,11 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
         }
     }
 
-    const newNoteToPlayWithoutDuplicates = () => {
+    const getNoteToPlayWithoutDuplicates = () => {
         while (true) {
             let note = getFretboardNote(strings, fretMinMax, accidentals)
             if (note.note != previousNoteToPlay.note) {
+                isFlat(note.note) ? setFormat('flat') : setFormat('sharp')
                 setNoteToPlay(note)
                 setPreviousNoteToPlay(note)
                 break
@@ -115,31 +121,45 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
         }
     }
 
+    const goBack = () => {
+        setListening()
+        setOptionsIsOpen()
+    }
+
     return (
         <>
             {!listening &&
-                <Options optionsIsOpen={optionsIsOpen} start={start} title="Fretboard Options" playMode={playMode} setPlayMode={setPlayMode}>
-                    <Fieldset name="Strings">
-                        <Strings strings={strings} setStrings={setStrings} />
-                    </Fieldset>
+                <>
+                    <Options optionsIsOpen={optionsIsOpen} start={start} title="Fretboard Options" playMode={playMode} setPlayMode={setPlayMode}>
+                        <Fieldset name="Strings">
+                            <Strings strings={strings} setStrings={setStrings} />
+                        </Fieldset>
 
-                    <Fieldset name="Accidentals">
-                        <Accidentals accidentals={accidentals} setAccidentals={setAccidentals} />
-                    </Fieldset>
+                        <Fieldset name="Accidentals">
+                            <Accidentals accidentals={accidentals} setAccidentals={setAccidentals} />
+                        </Fieldset>
 
-                    <Fieldset name="Fret Range">
-                        <Frets fretMinMax={fretMinMax} setFretMinMax={setFretMinMax} />
-                    </Fieldset>
-                </Options>
+                        <Fieldset name="Fret Range">
+                            <Frets fretMinMax={fretMinMax} setFretMinMax={setFretMinMax} />
+                        </Fieldset>
+                    </Options>
+                </>
             }
 
             {(listening && noteToPlay) &&
                 <>
-                    play {noteToPlay.note} on {noteToPlay.string}
-
-                    <button onClick={() => setListening()}>stop</button>
-                    <button onClick={newNoteToPlayWithoutDuplicates}>Skip</button>
-                    <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} />
+                    <PlayArea playMode={playMode} correctCount={correctCount}>
+                        <h1 className="text-center text-2xl tracking-wide">
+                            Play <span className="text-blue-300 font-bold">{noteToPlay.note}</span>
+                            <span className="block my-2">on the</span>
+                            <span className="text-blue-300 font-bold">{noteToPlay.string}</span> String
+                        </h1>
+                        <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
+                    </PlayArea>
+                    <Controls>
+                        <button className="control-button" onClick={goBack}>Go Back</button>
+                        <button className="control-button" onClick={getNoteToPlayWithoutDuplicates}>Skip</button>
+                    </Controls>
                 </>
             }
         </>

@@ -77,22 +77,29 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
         setFifths(fifthsDefault)
     }
 
+    const goBack = () => {
+        setListening()
+        setOptionsIsOpen()
+    }
+
     return (
         <>
             {!listening &&
-                <Options optionsIsOpen={optionsIsOpen} start={start} title="Circle of Fifths Options" playMode={playMode} setPlayMode={setPlayMode}>
-                    <Fieldset name="Direction">
-                        <Direction direction={direction} setDirection={setDirection} />
-                    </Fieldset>
+                <>
+                    <Options optionsIsOpen={optionsIsOpen} start={start} title="Circle of Fifths Options" playMode={playMode} setPlayMode={setPlayMode}>
+                        <Fieldset name="Direction">
+                            <Direction direction={direction} setDirection={setDirection} />
+                        </Fieldset>
 
-                    <Fieldset name="Starting Note">
-                        <StartingNote startingNote={startingNote} setStartingNote={setStartingNote} />
-                    </Fieldset>
+                        <Fieldset name="Starting Note">
+                            <StartingNote startingNote={startingNote} setStartingNote={setStartingNote} />
+                        </Fieldset>
 
-                    <Fieldset name="Diagram">
-                        <Diagram diagram={diagram} setDiagram={setDiagram} />
-                    </Fieldset>
-                </Options>
+                        <Fieldset name="Diagram">
+                            <Diagram diagram={diagram} setDiagram={setDiagram} />
+                        </Fieldset>
+                    </Options>
+                </>
             }
 
             {(listening && noteToPlay) &&
