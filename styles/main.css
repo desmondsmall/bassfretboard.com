@@ -6,7 +6,7 @@
 
 .active,
 .bg-gradient-brand {
-    @apply bg-gradient-to-br from-red-400 to-rose-500 text-white shadow shadow-slate-800;
+    @apply bg-gradient-to-br from-yellow-200 to-yellow-200 text-gray-900 shadow shadow-slate-800;
 }
 
 html,

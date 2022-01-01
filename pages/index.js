@@ -41,24 +41,26 @@ export default function Home() {
 
       {!listening &&
         <>
-          <GiGuitarBassHead className="text-7xl md:text-9xl rotate-45 rounded-full p-2 text-white absolute top-4 left-0 z-50" />
           <div className="top-0 w-full h-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 z-50 absolute"></div>
-          
-          <div className="z-10 relative
-            default-p flex flex-col justify-center mx-auto min-h-screen -mt-6 lg:-mt-16
-            md:-mt-12 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/5">
-            <div className="2xl:px-6 text-center">
-              <h1 className="font-mono mb-2 text-3xl uppercase tracking-widest text-gradient bg-gradient-to-t from-blue-200 via-cyan-100 to-sky-300 lg:text-5xl md:text-4xl md:mb-4">Bass Trainer</h1>
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-thin mb-10 tracking-wide w-full relative">
-                Plug your bass into an audio interface, or put your phone or mic beside your amp
-              </h1>
 
-              <div className="w-11/12 md:w-full mx-auto md:flex">
+          <div className="z-10 relative
+            default-p flex flex-col justify-center mx-auto min-h-screen -mt-8 lg:-mt-16 xl:-mt-20
+            md:-mt-12 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/4">
+            <div className="2xl:px-8 relative">
+              <GiGuitarBassHead className="absolute right-0 text-5xl md:text-8xl rotate-12 md:-mr-6 md:-mt-6" />
+              <h1 className="font-mono text-4xl text-gradient bg-gradient-to-l from-pink-200 to-rose-200 md:text-5xl xl:text-6xl">Bass Trainer</h1>
+              <h2 className="text-xl md:text-3xl tracking-wide mb-5 md:mb-10 mt-1 md:mt-2 text-sky-100 md:font-thin">Practice by playing along</h2>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-thin mb-10 tracking-wide w-full relative xl:text-4xl lg:leading-10">
+                Simply plug into an audio interface or put your phone or microphone beside your amp
+              </h2>
+
+              <div className="w-full md:mx-auto md:flex">
+                <label for="practice-mode" className="mb-1 block md:hidden">Select Practice Type:</label>
                 <select
                   id="practice-mode"
                   onChange={(e) => setPlayMode(e.target.value)}
                   value={playMode}
-                  className="md:w-2/3 w-full tracking-tight cursor-pointer h-10 md:h-14 md:text-xl font-mono bg-white rounded-md text-gray-900 text-center">
+                  className="md:w-2/3 md:mr-1 w-auto tracking-wide cursor-pointer h-10 md:h-14 md:text-xl font-mono bg-white rounded-md text-gray-900 lg:text-2xl">
                   <option value="fretboard">Memorize the Fretboard</option>
                   <option value="circle of fifths">Practice Circle of Fifths</option>
                 </select>
