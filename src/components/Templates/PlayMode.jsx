@@ -4,7 +4,7 @@ import { Analyser } from '../Analyser'
 import { getNoteToPlay } from '../../functions'
 
 /* 
-    Each play mode has its own component that must
+    Each play mode has its own component (Fretboard, CircleOfFifths, etc) that must
         1) display options and maintain option state
         2) generate a note for the user to play (noteToPlay)
         3) provide a function to check if that note is correct (isCorrect())
@@ -21,7 +21,7 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     // Analyser will take am optional "format" prop which by defualt returns NotePlaying.note (A#/Bb)
     // If you want the analyser to return A# (NotePlaying.sharp) set format to "sharp"; if you want Bb
     // set to "flat" (NotePlaying.flat). Note this will affect how you write the isCorrect function, 
-    // i.e. what format is NoteToPlay in?
+    // i.e. you must be aware of what format NoteToPlay is in 
     const [format, setFormat] = useState()
 
     // required

@@ -40,9 +40,26 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     const [noteToPlay, setNoteToPlay] = useState()
     const [correct, setCorrect] = useState()
     const [format, setFormat] = useState()
-    const [correctCount, setCorrectCount] = useState(0)
 
     console.log("fretboard rendered")
+
+    // Generate a noteToPlay, reset correct notes
+    useEffect(() => {
+        if (listening) {
+            let note = getFretboardNote(strings, fretMinMax, accidentals)
+            isFlat(note.note) ? setFormat('flat') : setFormat('sharp')
+            setNoteToPlay(note)
+            setPreviousNoteToPlay(note)
+        }
+    }, [listening])
+
+    useEffect(() => {
+        if (correct) {
+            getNoteToPlayWithoutDuplicates()
+            setCorrectCount(correctCount + 1)
+            setCorrect()
+        }
+    }, [correct])
 
     const getFretboardNote = (strings, fretMinMax, accidentals) => {
 
@@ -65,7 +82,6 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
         const note = notes[string][fret]
 
         // Change the sharp or flat depending on the options
-
         if (!accidentals.sharp && accidentals.flat) {
             return { 'string': string, 'note': transpose(note) }
         }
@@ -83,23 +99,6 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
         return { 'string': string, note: note }
     }
-    // Generate a noteToPlay, reset correct notes
-    useEffect(() => {
-        if (listening) {
-            let note = getFretboardNote(strings, fretMinMax, accidentals)
-            isFlat(note.note) ? setFormat('flat') : setFormat('sharp')
-            setNoteToPlay(note)
-            setPreviousNoteToPlay(note)
-        }
-    }, [listening])
-
-    useEffect(() => {
-        if (correct) {
-            getNoteToPlayWithoutDuplicates()
-            setCorrectCount(correctCount + 1)
-            setCorrect()
-        }
-    }, [correct])
 
     const isCorrect = (noteToPlay, notePlaying) => {
         if ((noteToPlay.note === notePlaying.sharp + notePlaying.octave) ||
@@ -109,6 +108,8 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
         }
     }
 
+    // prevents confusing UI where correct note is sustained 
+    // into the next noteToPlay and they match
     const getNoteToPlayWithoutDuplicates = () => {
         while (true) {
             let note = getFretboardNote(strings, fretMinMax, accidentals)
@@ -148,7 +149,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
             {(listening && noteToPlay) &&
                 <>
-                    <PlayArea playMode={playMode} correctCount={correctCount}>
+                    <PlayArea title="Fretboard">
                         <h1 className="text-center text-2xl tracking-wide">
                             Play <span className="text-blue-300 font-bold">{noteToPlay.note}</span>
                             <span className="block my-2">on the</span>

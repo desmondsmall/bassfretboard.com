@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react'
+import { PlayArea } from '../PlayArea'
+import { Controls } from '../PlayArea/Controls'
 import { Options } from '../Options'
 import { Analyser } from '../Analyser'
 import { Direction } from './Direction'
 import { StartingNote } from './StartingNote'
 import { Fieldset } from '../Fieldset'
-import { Diagram } from './Diagram'
+import { ShowNextNote } from './ShowNextNote'
 import { randomIntFromInterval } from '../../functions'
 
-export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOpen, start, playMode, setPlayMode }) => {
+export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsIsOpen, optionsIsOpen, start, playMode, setPlayMode }) => {
 
     const fourthsDefault = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'B', 'E', 'A', 'D', 'G']
     const fifthsDefault = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F']
 
     const [direction, setDirection] = useState("fourths")
     const [startingNote, setStartingNote] = useState("c")
-    const [diagram, setDiagram] = useState(true)
+    const [showNextNote, setShowNextNote] = useState(true)
     const [correct, setCorrect] = useState()
     const [noteToPlay, setNoteToPlay] = useState()
     const [format, setFormat] = useState("flat")
+    const [playAreaTitle, setPlayAreaTitle] = useState("Circle of Fifths")
 
     const [fourths, setFourths] = useState(fourthsDefault)
     const [fifths, setFifths] = useState(fifthsDefault)
@@ -25,6 +28,11 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     // Sets NoteToPlay when random startingNote is selected
     // Otherwise fourths and fifths useEffect hooks handle it
     useEffect(() => {
+        if(direction === "fourths") {
+            setPlayAreaTitle("Circle of Fourths")
+        } else {
+            setPlayAreaTitle("Circle of Fifths")
+        }
         if (listening && startingNote === "random") {
             let array = direction === "fourths" ? [...fourths] : [...fifths]
 
@@ -71,15 +79,15 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
     }
 
     // If the array isn't reset to default it maintains previous state
-    const stop = () => {
+    const goBack = () => {
         setListening()
         setFourths(fourthsDefault)
         setFifths(fifthsDefault)
+        setOptionsIsOpen()
     }
 
-    const goBack = () => {
-        setListening()
-        setOptionsIsOpen()
+    const skip = () => {
+        setCorrect(true)
     }
 
     return (
@@ -95,8 +103,8 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
                             <StartingNote startingNote={startingNote} setStartingNote={setStartingNote} />
                         </Fieldset>
 
-                        <Fieldset name="Diagram">
-                            <Diagram diagram={diagram} setDiagram={setDiagram} />
+                        <Fieldset name="Show Next Note">
+                            <ShowNextNote showNextNote={showNextNote} setShowNextNote={setShowNextNote} />
                         </Fieldset>
                     </Options>
                 </>
@@ -104,16 +112,16 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, optionsIsOp
 
             {(listening && noteToPlay) &&
                 <>
-                    {noteToPlay}
-
-                    <button onClick={stop}>stop</button>
-                    <Analyser
-                        userAudio={userAudio}
-                        listening={listening}
-                        isCorrect={isCorrect}
-                        noteToPlay={noteToPlay}
-                        format={format}
-                    />
+                    <PlayArea title={playAreaTitle}>
+                        <h1 className="text-center text-2xl tracking-wide">
+                            Play <span className="text-blue-300 font-bold">{noteToPlay}</span>
+                        </h1>
+                        <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
+                    </PlayArea>
+                    <Controls>
+                        <button className="control-button" onClick={goBack}>Go Back</button>
+                        <button className="control-button bg-gradient-brand" onClick={skip}>Skip</button>
+                    </Controls>
                 </>
             }
         </>
