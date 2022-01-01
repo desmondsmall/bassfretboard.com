@@ -3,10 +3,9 @@
 .bg {
     @apply bg-gradient-to-tl from-slate-800 to-slate-700;
 }
-
-.active,
 .bg-gradient-brand {
-    @apply bg-gradient-to-br from-yellow-200 to-yellow-200 text-gray-900 shadow shadow-slate-800;
+    @apply text-white shadow shadow-slate-800;
+    background: #c64d75 !important;
 }
 
 html,
@@ -62,13 +61,17 @@ select {
 }
 
 .control-button {
-    @apply py-3 px-6 font-mono mx-1 shadow shadow-slate-800 bg-slate-700 rounded;
+    @apply py-3 px-8 font-mono mx-1 shadow shadow-slate-800 bg-slate-700 rounded-md;
 }
 
 .option-button {
     @apply h-12 rounded-lg mx-1 my-2 shadow shadow-slate-800 bg-slate-700 lg:text-lg;
     min-width: 3em;
     min-height: 3em;
+}
+
+.active {
+    @apply text-gray-900 shadow shadow-slate-800 bg-slate-300;
 }
 
 .fieldset-container-margin-fix:nth-last-child(1) {

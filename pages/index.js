@@ -48,8 +48,8 @@ export default function Home() {
             md:-mt-12 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/4">
             <div className="2xl:px-8 relative">
               <GiGuitarBassHead className="absolute right-0 text-5xl md:text-8xl rotate-12 md:-mr-6 md:-mt-6" />
-              <h1 className="font-mono text-4xl text-gradient bg-gradient-to-l from-pink-200 to-rose-200 md:text-5xl xl:text-6xl">Bass Trainer</h1>
-              <h2 className="text-xl md:text-3xl tracking-wide mb-5 md:mb-10 mt-1 md:mt-2 text-sky-100 md:font-thin">Practice by playing along</h2>
+              <h1 className="font-mono text-4xl text-teal-200 md:text-5xl xl:text-6xl">Bass Trainer</h1>
+              <h2 className="text-xl md:text-3xl tracking-wide mb-5 md:mb-10 mt-1 md:mt-2 md:font-thin">Practice by playing along</h2>
               <h2 className="text-xl md:text-2xl lg:text-3xl font-thin mb-10 tracking-wide w-full relative xl:text-4xl lg:leading-10">
                 Simply plug into an audio interface or put your phone or microphone beside your amp
               </h2>

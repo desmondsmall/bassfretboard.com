@@ -158,7 +158,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
                     </PlayArea>
                     <Controls>
                         <button className="control-button" onClick={goBack}>Go Back</button>
-                        <button className="control-button" onClick={getNoteToPlayWithoutDuplicates}>Skip</button>
+                        <button className="control-button bg-gradient-brand" onClick={getNoteToPlayWithoutDuplicates}>Skip</button>
                     </Controls>
                 </>
             }
