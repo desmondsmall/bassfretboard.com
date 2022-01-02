@@ -35,6 +35,10 @@ h6 {
     font-family: "Inconsolata", monospace;
 }
 
+.play-area-circle {
+    @apply h-64 w-64;
+}
+
 .default-p {
     @apply p-4;
 }
@@ -45,8 +49,9 @@ h6 {
     }
 }
 @screen md {
-    .default-p {
-        @apply p-8;
+    .play-area-circle {
+        width: 400px;
+        height: 400px;
     }
 }
 
@@ -61,7 +66,7 @@ select {
 }
 
 .control-button {
-    @apply py-3 px-8 font-mono mx-1 shadow shadow-slate-800 bg-slate-700 rounded-md;
+    @apply py-3 px-8 font-mono mx-1 shadow shadow-slate-800 bg-slate-700 rounded-md md:text-xl md:px-12 md:mx-2;
 }
 
 .option-button {

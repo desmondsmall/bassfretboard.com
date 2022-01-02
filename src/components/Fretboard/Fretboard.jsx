@@ -150,7 +150,7 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
             {(listening && noteToPlay) &&
                 <>
                     <PlayArea title="Fretboard">
-                        <h1 className="text-center text-2xl tracking-wide">
+                        <h1 className="text-center text-2xl tracking-wide md:text-4xl">
                             Play <span className="text-blue-300 font-bold">{noteToPlay.note}</span>
                             <span className="block my-2">on the</span>
                             <span className="text-blue-300 font-bold">{noteToPlay.string}</span> String
