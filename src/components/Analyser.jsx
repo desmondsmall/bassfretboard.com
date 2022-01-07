@@ -37,6 +37,8 @@ export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay, format }
 
     const renderNotePlaying = () => {
         switch (format) {
+            case 'both':
+                return notePlaying.sharp + '/' + notePlaying.flat
             case 'sharp':
                 return notePlaying.sharp
             case 'flat':

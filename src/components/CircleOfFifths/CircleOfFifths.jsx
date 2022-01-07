@@ -4,6 +4,7 @@ import { Controls } from '../PlayArea/Controls'
 import { Options } from '../Options'
 import { Analyser } from '../Analyser'
 import { Direction } from './Direction'
+import { Diagram } from './Diagram'
 import { StartingNote } from './StartingNote'
 import { Fieldset } from '../Fieldset'
 import { ShowNextNote } from './ShowNextNote'
@@ -15,7 +16,9 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
     const fifthsDefault = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F']
 
     const [direction, setDirection] = useState("fourths")
+    const [diagram, setDiagram] = useState(false)
     const [startingNote, setStartingNote] = useState("c")
+    const [previousNote, setPreviousNote] = useState()
     const [showNextNote, setShowNextNote] = useState(true)
     const [correct, setCorrect] = useState()
     const [noteToPlay, setNoteToPlay] = useState()
@@ -24,15 +27,15 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
 
     const [fourths, setFourths] = useState(fourthsDefault)
     const [fifths, setFifths] = useState(fifthsDefault)
-
+    console.log(noteToPlay)
     // Sets NoteToPlay when random startingNote is selected
-    // Otherwise fourths and fifths useEffect hooks handle it
+    // Otherwise fourths and fifths useEffect hooks handles it with defaults
     useEffect(() => {
-        if(direction === "fourths") {
-            setPlayAreaTitle("Circle of Fourths")
-        } else {
-            setPlayAreaTitle("Circle of Fifths")
-        }
+
+        direction === "fourths"
+            ? setPlayAreaTitle("Circle of Fourths")
+            : setPlayAreaTitle("Circle of Fifths")
+
         if (listening && startingNote === "random") {
             let array = direction === "fourths" ? [...fourths] : [...fifths]
 
@@ -51,11 +54,13 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
 
     // Use default fourths array and go in order
     useEffect(() => {
+        setPreviousNote(fourths[11])
         setNoteToPlay(fourths[0])
     }, [fourths])
 
     // Use default fifths array and go in order
     useEffect(() => {
+        setPreviousNote(fifths[11])
         setNoteToPlay(fifths[0])
     }, [fifths])
 
@@ -66,7 +71,13 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
             let oldNote = newArray.shift()
             newArray.push(oldNote)
 
-            direction === "fourths" ? setFourths(newArray) : setFifths(newArray)
+            if (direction === "fourths") {
+                setFourths(newArray)
+            }
+            if (direction === "fifths") {
+                setFifths(newArray)
+            }
+            setPreviousNote(newArray[11])
             setCorrect()
         }
     }, [correct])
@@ -99,6 +110,10 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
                             <Direction direction={direction} setDirection={setDirection} />
                         </Fieldset>
 
+                        <Fieldset name="Diagram">
+                            <Diagram diagram={diagram} setDiagram={setDiagram} />
+                        </Fieldset>
+
                         <Fieldset name="Starting Note">
                             <StartingNote startingNote={startingNote} setStartingNote={setStartingNote} />
                         </Fieldset>
@@ -111,18 +126,45 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
             }
 
             {(listening && noteToPlay) &&
-                <>
+                <div className="-mt-4 md:mt-0">
                     <PlayArea title={playAreaTitle}>
-                        <h1 className="text-center text-2xl tracking-wide">
-                            Play <span className="text-blue-300 font-bold">{noteToPlay}</span>
-                        </h1>
+                        <div>
+                            {showNextNote
+                                ?
+                                <h1 className="text-center text-2xl tracking-wide md:text-5xl">
+                                    Play <span className="text-blue-300 font-bold">{noteToPlay}</span>
+                                </h1>
+                                :
+                                <div>
+                                    <h1 className="text-center text-6xl tracking-wide md:text-8xl text-blue-300">
+                                        ?
+                                    </h1>
+                                </div>
+                            }
+                        </div>
                         <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
                     </PlayArea>
+                    <div class="w-full mx-auto text-center -mt-32 md:-mt-44 mb-12 md:mb-16">
+                        {!showNextNote &&
+                            <h1 class="text-3xl md:text-5xl font-mono mb-4">
+                                Last Note: <span class="text-blue-300">{previousNote}</span></h1>
+                        }
+                        {(diagram && direction === "fifths") &&
+                            <div className="md:text-2xl tracking-widest">
+                                C | G | D | A | E | B | F#/G♭ | C♯/D♭ | A♭| E♭| B♭| F
+                            </div>
+                        }
+                        {(diagram && direction === "fourths") &&
+                            <div className="md:text-2xl tracking-widest">
+                                C | F | B♭ | E♭ | A♭ | D♭ | G♭ | B | E | A | D | G
+                            </div>
+                        }
+                    </div>
                     <Controls>
                         <button className="control-button" onClick={goBack}>Go Back</button>
                         <button className="control-button bg-gradient-brand" onClick={skip}>Skip</button>
                     </Controls>
-                </>
+                </div>
             }
         </>
     )
