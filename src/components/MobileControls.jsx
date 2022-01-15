@@ -9,7 +9,7 @@ export const MobileControls = ({ start, optionsIsOpen, setOptionsIsOpen }) => {
     return (
         <>
             {(windowSize.width < breakpoints.md) &&
-                <div className="fixed bottom-2 inset-x-3 flex h-11 mb-2" style={{zIndex: "1000"}}>
+                <div className="fixed bottom-2 inset-x-3 flex h-11 mb-2 overflow-hidden" style={{zIndex: "1000"}}>
                     {start}
                     <button
                         onClick={() => setOptionsIsOpen(state => !state)}
