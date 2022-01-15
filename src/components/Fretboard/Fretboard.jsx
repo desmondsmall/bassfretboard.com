@@ -147,14 +147,24 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
 
             {(listening && noteToPlay) &&
                 <>
-                    <PlayArea title="Fretboard">
-                        <h1 className="text-center text-2xl tracking-wide md:text-4xl">
-                            Play <span className="text-blue-300 font-bold">{noteToPlay.note}</span>
-                            <span className="block my-2">on the</span>
-                            <span className="text-blue-300 font-bold">{noteToPlay.string}</span> String
-                        </h1>
-                        <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
-                    </PlayArea>
+
+                    <div className="absolute top-0 left-0 right-0 mt-8 text-center">
+                        <h1 className="text-2xl md:text-3xl md:mb-1 text-gradient bg-gradient-to-t from-blue-200 via-cyan-100 to-sky-300 font-mono uppercase tracking-wide">Bass Trainer</h1>
+                        <h2 className="capitalize text-2xl md:text-4xl font-mono">Fretboard Mode</h2>
+                    </div>
+                    <div className="flex flex-col justify-center items-center" style={{ height: "90vh" }}>
+                        <div className="play-area-circle rounded-full p-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 shadow shadow-slate-800 relative">
+                            <div className="bg-slate-700 w-full h-full rounded-full flex items-center justify-center relative">
+                                <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
+                                <h1 className="text-center text-2xl tracking-wide md:text-4xl">
+                                    Play <span className="text-blue-300 font-bold">{noteToPlay.note}</span>
+                                    <span className="block my-2">on the</span>
+                                    <span className="text-blue-300 font-bold">{noteToPlay.string}</span> String
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
                     <Controls>
                         <button className="control-button" onClick={goBack}>Go Back</button>
                         <button className="control-button bg-gradient-brand" onClick={getNoteToPlayWithoutDuplicates}>Skip</button>
