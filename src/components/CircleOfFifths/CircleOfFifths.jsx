@@ -84,7 +84,6 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
     const isCorrect = (noteToPlay, notePlaying) => {
         if (noteToPlay === notePlaying.flat) {
             setCorrect(true)
-            console.log("correct")
         }
     }
 

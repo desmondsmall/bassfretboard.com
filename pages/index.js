@@ -27,8 +27,6 @@ export default function Home() {
     }
   }
 
-  console.log("home rendered")
-
   return (
     <>
       <Head>
@@ -45,17 +43,16 @@ export default function Home() {
       {!listening &&
         <>
           <div className="top-0 w-full h-1 lg:h-2 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 z-50 absolute"></div>
+          <GiGuitarBassHead className="absolute top-0 right-0 text-5xl md:text-8xl rotate-12 mt-5 mr-4 md:mt-12 md:mr-8" />
 
           <div className="z-10 relative
-            default-p flex flex-col justify-center mx-auto h-screen -mt-8 lg:-mt-16 xl:-mt-20
+            default-p flex flex-col justify-center mx-auto h-screen -mt-4 lg:-mt-16 xl:-mt-20
             md:-mt-12 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/4">
             <div className="2xl:px-8 relative">
-              <GiGuitarBassHead className="absolute right-0 text-5xl md:text-8xl rotate-12 -mt-16 md:-mr-6 md:-mt-6" />
-              <h1 className="font-mono text-4xl text-teal-200 md:text-5xl xl:text-6xl">Bass Fretboard</h1>
-              <h2 className="text-xl md:text-3xl tracking-wide mb-5 md:mb-10 mt-1 md:mt-2 md:font-thin text-cyan-100">Get better at bass by playing along</h2>
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-thin mb-10 tracking-wide w-full relative lg:leading-10">
-                Plug your bass into an audio interface or put your phone / mic beside your amp
-                <span className="hidden lg:inline-block">. Choose a practice mode and press start!</span>
+              <h1 className="font-mono text-3xl text-teal-200 md:text-5xl xl:text-6xl">Bass Fretboard</h1>
+              <h2 className="text-lg md:text-3xl tracking-wide mb-5 md:mb-10 mt-1 md:mt-2 md:font-thin text-cyan-100">Get better at bass by playing along</h2>
+              <h2 className="text-lg md:text-2xl lg:text-3xl font-thin mb-10 tracking-wide w-full relative lg:leading-10">
+                Plug your bass into an audio interface or put your phone / mic beside your amp. Choose a practice mode and press start!
               </h2>
 
               <div className="w-full md:mx-auto md:flex">
@@ -64,7 +61,7 @@ export default function Home() {
                   id="practice-mode"
                   onChange={(e) => setPlayMode(e.target.value)}
                   value={playMode}
-                  className="w-4/5 md:w-2/3 md:mr-1 tracking-wide cursor-pointer h-10 md:h-14 md:text-2xl bg-white rounded-md text-gray-900">
+                  className="w-11/12 bg-slate-200 md:w-2/3 md:mr-1 tracking-wide cursor-pointer h-10 md:h-14 md:text-2xl rounded-md text-gray-900 p-2">
                   <option value="fretboard">Memorize the Fretboard</option>
                   <option value="circle of fifths">Play Circle of Fifths</option>
                 </select>
@@ -73,7 +70,7 @@ export default function Home() {
 
             </div>
           </div>
-            <MobileControls start={start} optionsIsOpen={optionsIsOpen} setOptionsIsOpen={setOptionsIsOpen} />
+          <MobileControls start={start} optionsIsOpen={optionsIsOpen} setOptionsIsOpen={setOptionsIsOpen} />
 
         </>
       }

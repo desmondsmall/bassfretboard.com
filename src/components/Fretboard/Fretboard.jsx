@@ -41,8 +41,6 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     const [correct, setCorrect] = useState()
     const [format, setFormat] = useState()
 
-    console.log("fretboard rendered")
-
     // Generate a noteToPlay, reset correct notes
     useEffect(() => {
         if (listening) {
