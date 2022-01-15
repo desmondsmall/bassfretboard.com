@@ -49,8 +49,8 @@ export const Analyser = ({ userAudio, listening, isCorrect, noteToPlay, format }
     }
 
     return (
-        <h1 className="absolute rounded-full mt-52 -ml-40 md:mt-64 md:-ml-72 md:text-2xl font-mono text-sm p-1 w-12 h-12 bg-blue-100 flex items-center justify-center shadow shadow-slate-800 text-gray-900">
-            {notePlaying ? renderNotePlaying() : <span className="text-sm tracking-widest">...</span>}
-        </h1>
+        <div className="absolute rounded-full mt-52 -ml-40 md:mt-64 md:-ml-72 p-1 w-12 h-12 bg-blue-100 flex items-center justify-center shadow shadow-slate-800">
+            <h1 className="md:text-2xl font-mono text-sm text-gray-900">{notePlaying ? renderNotePlaying() : <span className="text-sm tracking-widest">...</span>}</h1>
+        </div>
     )
 }
