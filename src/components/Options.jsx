@@ -1,7 +1,7 @@
 import { useBreakpointContext } from '../context/BreakpointContext'
 import { useWindowSize } from '../hooks/useWindowSize'
 
-export const Options = ({ children, optionsIsOpen, title }) => {
+export const Options = ({ children, optionsIsOpen }) => {
 
     const windowSize = useWindowSize()
     const breakpoints = useBreakpointContext()
@@ -10,12 +10,10 @@ export const Options = ({ children, optionsIsOpen, title }) => {
         <>
             {/* Mobile */}
             {(optionsIsOpen && windowSize.width < breakpoints.md) &&
-                <>
-                    <div className="default-p absolute inset-x-0 inset-y-0 z-10 mt-2 bg -mb-24" style={{zIndex:"55"}}>
-                        {/* <h1 className="my-8 text-2xl text-center">{title}</h1> */}
-                        {children}
-                    </div>
-                </>
+                <div className="default-p absolute inset-x-0 inset-y-0 z-10 mt-2 bg -mb-24" style={{ zIndex: "100" }}>
+                    {/* <h1 className="my-8 text-2xl text-center">{title}</h1> */}
+                    {children}
+                </div>
             }
 
             {/* Desktop */}

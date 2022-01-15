@@ -19,6 +19,6 @@ export const Start = ({ userAudio, setUserAudio, setListening }) => {
     }
 
     return (
-        <button onClick={click} className="w-1/2 md:w-full md:ml-2 md:h-14 md:text-xl lg:text-2xl xl:uppercase xl:tracking-widest rounded-md shadow shadow-slate-800 bg-gradient-brand text-gray-900 font-mono">Start</button>
+        <button onClick={click} className="w-1/2 md:w-full md:ml-2 md:h-14 md:text-xl lg:text-2xl xl:uppercase xl:tracking-widest rounded-md shadow shadow-slate-800 bg-gradient-brand text-white font-mono">Start</button>
     )
 }

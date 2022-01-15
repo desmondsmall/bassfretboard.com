@@ -4,8 +4,6 @@ import { Analyser } from '../Analyser'
 import { Fieldset } from '../Fieldset'
 import { isFlat, randomBoolean, randomIntFromInterval, transpose } from '../../functions'
 import { Controls } from '../PlayArea/Controls'
-import { notes } from '../../notes'
-import { PlayArea } from '../PlayArea'
 
 export const Reading = ({ userAudio, listening, setListening, optionsIsOpen, start, playMode, setPlayMode, setOptionsIsOpen }) => {
 
