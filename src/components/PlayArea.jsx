@@ -1,5 +1,3 @@
-import { Controls } from './PlayArea/Controls'
-
 export const PlayArea = ({ children, title }) => {
     return (
         <>
@@ -8,7 +6,7 @@ export const PlayArea = ({ children, title }) => {
                 <h2 className="capitalize text-2xl md:text-4xl font-mono">{title}</h2>
             </div>
             <div className="flex flex-col justify-center items-center" style={{ height: "90vh" }}>
-                <div className="play-area-circle rounded-full p-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 shadow shadow-slate-800">
+                <div className="play-area-circle rounded-full p-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 shadow shadow-slate-800 relative">
                     <div className="bg-slate-700 w-full h-full rounded-full flex items-center justify-center relative">
                         {children}
                     </div>
