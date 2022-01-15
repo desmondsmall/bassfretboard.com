@@ -13,7 +13,6 @@ export const PlayArea = ({ children, title }) => {
                         {children}
                     </div>
                 </div>
-                <Controls />
             </div>
         </>
     )

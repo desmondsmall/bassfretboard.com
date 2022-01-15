@@ -27,7 +27,6 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
 
     const [fourths, setFourths] = useState(fourthsDefault)
     const [fifths, setFifths] = useState(fifthsDefault)
-    console.log(noteToPlay)
     // Sets NoteToPlay when random startingNote is selected
     // Otherwise fourths and fifths useEffect hooks handles it with defaults
     useEffect(() => {
@@ -136,19 +135,15 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
                                 </h1>
                                 :
                                 <div>
-                                    <h1 className="text-center text-6xl tracking-wide md:text-8xl text-blue-300">
-                                        ?
-                                    </h1>
+                                    <h1 class="text-2xl md:text-5xl font-mono mb-4 text-center mt-4">
+                                        Play the<br/> Note After <span class="block mt-2 text-blue-300 text-4xl font-bold md:text-6xl">{previousNote}</span>
+                                        </h1>
                                 </div>
                             }
                         </div>
                         <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
                     </PlayArea>
                     <div class="w-full mx-auto text-center -mt-32 md:-mt-44 mb-12 md:mb-16">
-                        {!showNextNote &&
-                            <h1 class="text-3xl md:text-5xl font-mono mb-4">
-                                Last Note: <span class="text-blue-300">{previousNote}</span></h1>
-                        }
                         {(diagram && direction === "fifths") &&
                             <div className="md:text-2xl tracking-widest">
                                 C | G | D | A | E | B | F#/G♭ | C♯/D♭ | A♭| E♭| B♭| F
