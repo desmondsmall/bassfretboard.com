@@ -10,9 +10,11 @@ export const Options = ({ children, optionsIsOpen }) => {
         <>
             {/* Mobile */}
             {(optionsIsOpen && windowSize.width < breakpoints.md) &&
-                <div className="default-p absolute inset-x-0 inset-y-0 z-10 mt-2 bg -mb-24" style={{ zIndex: "100" }}>
+                <div className="default-p absolute inset-x-0 inset-y-0 mt-2 bg z-30">
                     {/* <h1 className="my-8 text-2xl text-center">{title}</h1> */}
-                    {children}
+                    <div className="bg pb-28">
+                        {children}
+                    </div>
                 </div>
             }
 
