@@ -48,9 +48,9 @@ export default function Home() {
 
           <div className="top-0 w-full h-1 lg:h-2 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 absolute"></div>
           <div className="z-20 relative overflow-hidden
-            default-p flex flex-col justify-center mx-auto h-screen items-center -mt-6
+            default-p flex flex-col justify-center mx-auto h-screen items-center
             md:-mt-20 md:w-2/3 lg:w-3/5 2xl:w-2/4">
-            <div className="2xl:px-8 relative">
+            <div className="2xl:px-8 relative -mt-6">
               <h1 className="font-mono text-4xl text-teal-200 md:text-5xl 2xl:text-6xl text-gradient bg-gradient-to-l from-yellow-200 via-cyan-200 to-red-300">Bass Fretboard</h1>
               <h2 className="text-lg md:text-3xl tracking-wide mb-5 md:mb-6 mt-1 md:mt-2 md:font-thin">Get better at bass by playing along</h2>
               <h2 className="text-lg md:text-2xl font-thin mb-10 tracking-wide w-full relative lg:leading-10">
