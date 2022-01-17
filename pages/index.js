@@ -46,7 +46,7 @@ export default function Home() {
       {!listening &&
         <>
 
-          <div className="top-0 w-full h-1 lg:h-2 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 absolute"></div>
+          <div className="top-0 w-full h-1 lg:h-2 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 absolute z-50"></div>
           <div className="z-20 relative overflow-hidden
             default-p flex flex-col justify-center mx-auto h-screen items-center
             md:-mt-20 md:w-2/3 lg:w-3/5 2xl:w-2/4 bg">
