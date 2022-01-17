@@ -124,7 +124,7 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
             {(listening && noteToPlay) &&
                 <>
                     <div className="flex items-center justify-center flex-col min-h-screen bg">
-                        <div className="text-center lg:-mt-24">
+                        <div className="text-center xl:-mt-12">
                             <h1 className="text-2xl md:text-3xl text-teal-100 font-mono uppercase tracking-wide">Bass Fretboard</h1>
                             <h2 className="capitalize text-2xl md:text-4xl font-mono">Circle of Fifths Mode</h2>
 
