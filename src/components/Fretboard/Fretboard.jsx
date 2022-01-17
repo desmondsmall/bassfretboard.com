@@ -144,28 +144,32 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
             }
 
             {(listening && noteToPlay) &&
-                <div className="flex items-center justify-center flex-col default-p h-screen">
-                    <h1 className="text-2xl md:text-3xl text-teal-100 font-mono uppercase tracking-wide">Bass Fretboard</h1>
-                    <h2 className="capitalize text-2xl md:text-4xl font-mono">Fretboard Mode</h2>
+                <>
+                    <div className="flex items-center justify-center flex-col min-h-screen bg">
+                        <div className="text-center lg:-mt-24">
+                            <h1 className="text-2xl md:text-3xl text-teal-100 font-mono uppercase tracking-wide">Bass Fretboard</h1>
+                            <h2 className="capitalize text-2xl md:text-4xl font-mono">Fretboard Mode</h2>
 
-                    <div className="flex flex-col justify-center items-center my-8">
-                        <div className="w-64 h-64 rounded-full p-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 shadow shadow-slate-800 relative">
-                            <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
-                            <div className="bg-slate-700 w-full h-full rounded-full flex items-center justify-center relative">
-                                <h1 className="text-center text-2xl tracking-wide md:text-4xl">
-                                    Play <span className="text-blue-300 font-bold">{noteToPlay.note}</span>
-                                    <span className="block my-2">on the</span>
-                                    <span className="text-blue-300 font-bold">{noteToPlay.string}</span> String
-                                </h1>
+                            <div className="flex flex-col justify-center items-center my-8 lg:my-12">
+                                <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-full p-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 shadow shadow-slate-800 relative">
+                                    <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
+                                    <div className="bg-slate-700 w-full h-full rounded-full flex items-center justify-center relative">
+                                        <h1 className="text-center text-2xl tracking-wide md:text-4xl">
+                                            Play <span className="text-blue-300 font-bold">{noteToPlay.note}</span>
+                                            <span className="block my-2">on the</span>
+                                            <span className="text-blue-300 font-bold">{noteToPlay.string}</span> String
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-center">
+                                <button className="control-button" onClick={goBack}>Go Back</button>
+                                <button className="control-button bg-gradient-brand" onClick={getNoteToPlayWithoutDuplicates}>Skip</button>
                             </div>
                         </div>
                     </div>
-
-                    <div className="flex">
-                        <button className="control-button" onClick={goBack}>Go Back</button>
-                        <button className="control-button bg-gradient-brand" onClick={getNoteToPlayWithoutDuplicates}>Skip</button>
-                    </div>
-                </div>
+                </>
             }
         </>
     )
