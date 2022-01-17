@@ -3,7 +3,6 @@ import { Options } from '../Options'
 import { Analyser } from '../Analyser'
 import { Fieldset } from '../Fieldset'
 import { isFlat, randomBoolean, randomIntFromInterval, transpose } from '../../functions'
-import { Controls } from '../PlayArea/Controls'
 
 export const Reading = ({ userAudio, listening, setListening, optionsIsOpen, start, playMode, setPlayMode, setOptionsIsOpen }) => {
 

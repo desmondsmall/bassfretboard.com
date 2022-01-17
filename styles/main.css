@@ -35,10 +35,6 @@ h6 {
     font-family: "Inconsolata", monospace;
 }
 
-.play-area-circle {
-    @apply h-64 w-64;
-}
-
 .default-p {
     @apply p-4;
 }
@@ -46,12 +42,6 @@ h6 {
 @screen sm {
     .default-p {
         @apply p-6;
-    }
-}
-@screen md {
-    .play-area-circle {
-        width: 400px;
-        height: 400px;
     }
 }
 

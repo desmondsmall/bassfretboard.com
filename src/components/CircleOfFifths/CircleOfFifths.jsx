@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { PlayArea } from '../PlayArea'
-import { Controls } from '../PlayArea/Controls'
 import { Options } from '../Options'
 import { Analyser } from '../Analyser'
 import { Direction } from './Direction'
@@ -108,7 +106,7 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
                             <Direction direction={direction} setDirection={setDirection} />
                         </Fieldset>
 
-                        <Fieldset name="Diagram">
+                        <Fieldset name="Show Legend">
                             <Diagram diagram={diagram} setDiagram={setDiagram} />
                         </Fieldset>
 
@@ -116,7 +114,7 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
                             <StartingNote startingNote={startingNote} setStartingNote={setStartingNote} />
                         </Fieldset>
 
-                        <Fieldset name="Show Next Note">
+                        <Fieldset name="Show the next note">
                             <ShowNextNote showNextNote={showNextNote} setShowNextNote={setShowNextNote} />
                         </Fieldset>
                     </Options>
@@ -124,41 +122,49 @@ export const CircleOfFifths = ({ userAudio, listening, setListening, setOptionsI
             }
 
             {(listening && noteToPlay) &&
-                <div className="-mt-4 md:mt-0">
-                    <PlayArea title={playAreaTitle}>
-                        <div>
-                            {showNextNote
-                                ?
-                                <h1 className="text-center text-2xl tracking-wide md:text-5xl">
-                                    Play <span className="text-blue-300 font-bold">{noteToPlay}</span>
-                                </h1>
-                                :
-                                <div>
-                                    <h1 class="text-2xl md:text-5xl font-mono mb-4 text-center mt-4">
-                                        Play the<br/> Note After <span class="block mt-2 text-blue-300 text-4xl font-bold md:text-6xl">{previousNote}</span>
+                <>
+                    <div className="flex items-center justify-center flex-col default-p h-screen">
+                        <h1 className="text-2xl md:text-3xl text-teal-100 font-mono uppercase tracking-wide">Bass Fretboard</h1>
+                        <h2 className="capitalize text-2xl md:text-4xl font-mono">Circle of Fifths Mode</h2>
+
+                        <div className="flex flex-col justify-center items-center my-8">
+                            <div className="w-64 h-64 rounded-full p-1 bg-gradient-to-r from-yellow-200 via-cyan-400 to-pink-300 shadow shadow-slate-800 relative">
+                                <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
+                                <div className="bg-slate-700 w-full h-full rounded-full flex items-center justify-center relative">
+                                    {showNextNote
+                                        ?
+                                        <h1 className="text-center text-2xl tracking-wide md:text-5xl">
+                                            Play <span className="text-blue-300 font-bold">{noteToPlay}</span>
                                         </h1>
+                                        :
+                                        <div>
+                                            <h1 class="text-2xl md:text-5xl font-mono mb-4 text-center mt-4">
+                                                Play the<br /> Note After <span class="block mt-2 text-blue-300 text-4xl font-bold md:text-6xl">{previousNote}</span>
+                                            </h1>
+                                        </div>
+                                    }
                                 </div>
-                            }
+                            </div>
+                            <div class="text-center mt-8">
+                                {(diagram && direction === "fifths") &&
+                                    <div className="md:text-2xl">
+                                        C | G | D | A | E | B | F#/G♭ | C♯/D♭ | A♭| E♭| B♭| F
+                                    </div>
+                                }
+                                {(diagram && direction === "fourths") &&
+                                    <div className="md:text-2xl">
+                                        C | F | B♭ | E♭ | A♭ | D♭ | G♭ | B | E | A | D | G
+                                    </div>
+                                }
+                            </div>
                         </div>
-                        <Analyser userAudio={userAudio} listening={listening} isCorrect={isCorrect} noteToPlay={noteToPlay} format={format} />
-                    </PlayArea>
-                    <div class="w-full mx-auto text-center -mt-32 md:-mt-44 mb-12 md:mb-16">
-                        {(diagram && direction === "fifths") &&
-                            <div className="md:text-2xl tracking-widest">
-                                C | G | D | A | E | B | F#/G♭ | C♯/D♭ | A♭| E♭| B♭| F
-                            </div>
-                        }
-                        {(diagram && direction === "fourths") &&
-                            <div className="md:text-2xl tracking-widest">
-                                C | F | B♭ | E♭ | A♭ | D♭ | G♭ | B | E | A | D | G
-                            </div>
-                        }
+
+                        <div className="flex">
+                            <button className="control-button" onClick={goBack}>Go Back</button>
+                            <button className="control-button bg-gradient-brand" onClick={skip}>Skip</button>
+                        </div>
                     </div>
-                    <Controls>
-                        <button className="control-button" onClick={goBack}>Go Back</button>
-                        <button className="control-button bg-gradient-brand" onClick={skip}>Skip</button>
-                    </Controls>
-                </div>
+                </>
             }
         </>
     )
