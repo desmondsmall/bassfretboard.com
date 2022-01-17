@@ -10,7 +10,7 @@ export const Options = ({ children, optionsIsOpen }) => {
         <>
             {/* Mobile */}
             {(optionsIsOpen && windowSize.width < breakpoints.md) &&
-                <div className="absolute top-0 left-0 right-0 mt-2 bg z-30 min-h-screen pb-24">
+                <div className="absolute top-0 left-0 right-0 mt-2 z-30 bg min-h-screen pb-24">
                     <div className="default-p">
                         {children}
                     </div>
