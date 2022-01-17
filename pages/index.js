@@ -73,7 +73,7 @@ export default function Home() {
           </div>
 
           {(windowSize.width < breakpoints.md) &&
-            <div className="fixed bottom-2 inset-x-3 flex h-11 mb-2 overflow-hidden z-50">
+            <div className="fixed bottom-2 inset-x-3 flex h-12 mb-2 overflow-hidden z-50">
               {start}
               <button
                 onClick={() => setOptionsIsOpen(state => !state)}
