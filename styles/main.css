@@ -71,8 +71,8 @@ select {
 
 .option-button {
     @apply h-12 rounded-lg mx-1 my-2 shadow shadow-slate-800 bg-slate-700 lg:text-lg;
-    min-width: 4em;
-    min-height: 3em;
+    min-width: 2.5em;
+    min-height: 2em;
 }
 
 .active {

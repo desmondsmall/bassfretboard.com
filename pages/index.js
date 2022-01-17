@@ -49,12 +49,12 @@ export default function Home() {
 
           <div className="z-20 relative overflow-hidden
             default-p flex flex-col justify-center mx-auto h-screen items-center -mt-6
-            md:-mt-20 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/4">
+            md:-mt-20 md:w-2/3 lg:w-3/5 2xl:w-2/4">
             <div className="2xl:px-8 relative">
-              <h1 className="font-mono text-4xl text-teal-200 md:text-5xl xl:text-6xl text-gradient bg-gradient-to-l from-yellow-200 via-cyan-200 to-red-300">Bass Fretboard</h1>
-              <h2 className="text-lg md:text-3xl tracking-wide mb-5 md:mb-10 mt-1 md:mt-2 md:font-thin text-white">Get better at bass by playing along</h2>
-              <h2 className="text-lg md:text-2xl lg:text-3xl font-thin mb-10 tracking-wide w-full relative lg:leading-10">
-                Plug your bass into an audio interface or put your phone / mic beside your amp. Choose a practice mode and press start!
+              <h1 className="font-mono text-4xl text-teal-200 md:text-5xl 2xl:text-6xl text-gradient bg-gradient-to-l from-yellow-200 via-cyan-200 to-red-300">Bass Fretboard</h1>
+              <h2 className="text-lg md:text-3xl tracking-wide mb-5 md:mb-6 mt-1 md:mt-2 md:font-thin">Get better at bass by playing along</h2>
+              <h2 className="text-lg md:text-2xl font-thin mb-10 tracking-wide w-full relative lg:leading-10">
+                Plug your bass guitar into an audio interface or simply put your phone or a mic beside your amp
               </h2>
 
               <div className="w-full md:mx-auto md:flex">
