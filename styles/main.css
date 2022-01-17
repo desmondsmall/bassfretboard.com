@@ -10,6 +10,7 @@
 
 html,
 body {
+    @apply bg-gradient-to-tl from-slate-800 to-slate-700;
     height: 100%;
     font-family: "Source Sans Pro";
     color: white;
