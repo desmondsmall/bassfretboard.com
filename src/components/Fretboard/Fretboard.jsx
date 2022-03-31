@@ -52,7 +52,6 @@ export const Fretboard = ({ userAudio, listening, setListening, optionsIsOpen, s
     useEffect(() => {
         if (correct) {
             getNoteToPlayWithoutDuplicates()
-            setCorrectCount(correctCount + 1)
             setCorrect()
         }
     }, [correct])
